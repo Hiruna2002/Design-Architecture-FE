@@ -1,6 +1,5 @@
-import React from 'react'
 import HomePage from './pages/Home'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Common/NavBar'
 import Footer from './components/Common/Footer'
 import AboutPage from './pages/About'
