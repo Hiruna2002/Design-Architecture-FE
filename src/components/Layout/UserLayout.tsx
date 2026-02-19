@@ -1,4 +1,3 @@
-import Footer from "../Common/Footer"
 import { Outlet } from "react-router-dom";
 
 const UserLayout: React.FC = () => {
@@ -7,7 +6,6 @@ const UserLayout: React.FC = () => {
             <main>
                 <Outlet />
             </main>
-            <Footer />
         </>
     );  
 };
