@@ -8,6 +8,9 @@ import ServicePage from './pages/Service'
 import ProjectsPage from './pages/Projects'
 import ProcessPage from './pages/Process'
 import ContactPage from './pages/Contact'
+import Login from './pages/LoginPage'
+import { SignUp } from './pages/SignupPage'
+import Team from './pages/Team'
 
 const App = () => {
   return (
@@ -21,6 +24,9 @@ const App = () => {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/process" element={<ProcessPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/team" element={<Team />} />
         </Route>  
       </Routes>
       <Footer />

@@ -89,7 +89,7 @@ function Home() {
               </div>
             </div>
             <h1 className="text-5xl md:text-7xl mb-4 tracking-tight">
-              LAHIRU SRIMAL
+              LAHIRU CAD STORE
             </h1>
             <p className="text-xl md:text-2xl mb-3 text-[#a3e635]">
               Architectural Designer
