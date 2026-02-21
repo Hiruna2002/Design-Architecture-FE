@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { projectId, publicAnonKey } from '/utils/supabase/info';
 import { Mail, Phone, Linkedin } from 'lucide-react';
 import { Loader2 } from 'lucide-react';
 
 export default function Team() {
-  const [teamMembers, setTeamMembers] = useState<any[]>([]);
+  const [teamMembers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
