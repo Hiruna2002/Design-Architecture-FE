@@ -29,7 +29,7 @@ interface TeamMember {
   name: string;
   role: string;
   email: string;
-  phone: string;
+  description: string;
   photo: string;
 }
 
@@ -95,7 +95,7 @@ const AdminDashboard: React.FC = () => {
       name: "Dr. Kavindu Perera",
       role: "Principal Architect",
       email: "kavindu@archstudio.lk",
-      phone: "+94 77 123 4567",
+      description: "Good and very talanted",
       photo: "https://picsum.photos/id/64/300/300"
     },
     {
@@ -103,7 +103,7 @@ const AdminDashboard: React.FC = () => {
       name: "Ayesha Fernando",
       role: "Lead Interior Designer",
       email: "ayesha@archstudio.lk",
-      phone: "+94 71 987 6543",
+      description: "Good and very talanted",
       photo: "https://picsum.photos/id/65/300/300"
     },
     {
@@ -111,7 +111,7 @@ const AdminDashboard: React.FC = () => {
       name: "Rohan Silva",
       role: "Structural Engineer",
       email: "rohan@archstudio.lk",
-      phone: "+94 76 555 4321",
+      description: "Good and very talanted",
       photo: "https://picsum.photos/id/66/300/300"
     }
   ]);
@@ -157,7 +157,6 @@ const AdminDashboard: React.FC = () => {
           name: '',
           type: 'Residential',
           area: '',
-          bedrooms: 0,
           status: 'Ongoing',
           description: '',
           image: ''
@@ -236,6 +235,11 @@ const AdminDashboard: React.FC = () => {
   };
 
   return (
+    <>
+    
+    
+    
+    
     <div className="flex h-screen overflow-hidden bg-[#0f172a] text-white font-sans">
       {/* Sidebar */}
       <div className={`fixed md:static inset-y-0 left-0 z-50 w-72 bg-[#1e2937] border-r border-slate-700 transform transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
@@ -374,8 +378,10 @@ const AdminDashboard: React.FC = () => {
               </div>
             </div>
           )}
+          {/* ------------------------------------------------------- */}
+                  {/* PROJECTS SECTION */}
+          {/* ------------------------------------------------------- */}
 
-          {/* PROJECTS SECTION */}
           {currentPage === 'projects' && (
             <div>
               <div className="flex justify-between items-center mb-8">
@@ -446,7 +452,10 @@ const AdminDashboard: React.FC = () => {
             </div>
           )}
 
-          {/* TEAM SECTION */}
+          {/* ------------------------------------------------------- */}
+                          {/* TEAM SECTION */}
+          {/* ------------------------------------------------------- */}
+
           {currentPage === 'team' && (
             <div>
               <div className="flex justify-between items-center mb-8">
@@ -489,10 +498,6 @@ const AdminDashboard: React.FC = () => {
                         <div className="w-5 h-5 bg-slate-700 rounded-lg flex items-center justify-center">✉</div>
                         <div>{member.email}</div>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-5 h-5 bg-slate-700 rounded-lg flex items-center justify-center">☎</div>
-                        <div>{member.phone}</div>
-                      </div>
                     </div>
                   </div>
                 ))}
@@ -500,7 +505,11 @@ const AdminDashboard: React.FC = () => {
             </div>
           )}
 
+          {/* ------------------------------------------------------- */}
           {/* USERS SECTION */}
+          {/* ------------------------------------------------------- */}
+
+
           {currentPage === 'users' && (
             <div>
               <div className="flex justify-between items-center mb-8">
@@ -793,7 +802,9 @@ const AdminDashboard: React.FC = () => {
         </div>
       )}
     </div>
+    </>
   );
+  
 };
 
 export default AdminDashboard;

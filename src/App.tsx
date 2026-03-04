@@ -12,10 +12,18 @@ import Login from './pages/LoginPage'
 import { SignUp } from './pages/SignupPage'
 import Team from './pages/Team'
 
+import AdminDashboard from './components/Admin/AdminDashboard'
+import AdminLayout from './components/Admin/AdminLayout'
+import AdminSidebar from './components/Admin/AdminSideBar'
+import AdminHomePage from './pages/AdminHomePage'
+import ProjectManagement from './components/Admin/ProjectManagement'
+
+
+
 const App = () => {
   return (
       <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path='/' element={<UserLayout />}>
           <Route path="/" element={<HomePage />} />
@@ -28,8 +36,13 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/team" element={<Team />} />
         </Route>  
+        <Route path='/admin' element={<AdminLayout />}>
+          <Route index element ={<AdminHomePage />} />
+          <Route path='project' element={<ProjectManagement />} />
+        </Route>        
+        
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
