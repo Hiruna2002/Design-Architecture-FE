@@ -19,7 +19,7 @@ const AdminTeam = () => {
   const [currentMember, setCurrentMember] = useState<TeamMember | null>(null);
   const [formData, setFormData] = useState({ preview: '', name: '', role: '', email: '' });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [currentProject, setCurrentProject] = useState<TeamMember | null>(null);
+  const [currentProject] = useState<TeamMember | null>(null);
   
 
 

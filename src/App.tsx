@@ -1,7 +1,5 @@
 import HomePage from './pages/Home'
 import { Route, Routes } from 'react-router-dom'
-import Navbar from './components/Common/NavBar'
-import Footer from './components/Common/Footer'
 import AboutPage from './pages/About'
 import UserLayout from './components/Layout/UserLayout'
 import ServicePage from './pages/Service'
@@ -12,7 +10,6 @@ import Login from './pages/LoginPage'
 import { SignUp } from './pages/SignupPage'
 import Team from './pages/Team'
 
-// import AdminDashboard from './components/Admin/AdminDashboard'
 import AdminLayout from './components/Admin/AdminLayout'; 
 import AdminProjects from './components/Admin/AdminProjects'; 
 import AdminTeam from './components/Admin/AdminTeam';  
@@ -23,7 +20,6 @@ import Dashboard from './components/Admin/Dashboard'
 const App = () => {
   return (
       <>
-      {/* <Navbar /> */}
       <Routes>
         <Route path='/' element={<UserLayout />}>
           <Route path="/" element={<HomePage />} />
@@ -37,14 +33,13 @@ const App = () => {
           <Route path="/team" element={<Team />} />
         </Route>  
         <Route path='/admin' element={<AdminLayout />} >
-          <Route index element={<Dashboard />} /> {/* Default to projects */}
+          <Route index element={<Dashboard />} />
           <Route path='dashboard' element={<Dashboard />} />
           <Route path="projects" element={<AdminProjects />} />
           <Route path="team" element={<AdminTeam />} />
           <Route path="users" element={<AdminUsers />} />
         </Route>    
       </Routes>
-      {/* <Footer /> */}
     </>
   )
 }

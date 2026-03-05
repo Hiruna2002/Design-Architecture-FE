@@ -36,10 +36,10 @@ interface User {
 
 
 const Dashboard = () => {
-      const [currentPage, setCurrentPage] = useState<'dashboard' | 'projects' | 'team' | 'users'>('dashboard');
+      const [currentPage] = useState<'dashboard' | 'projects' | 'team' | 'users'>('dashboard');
       const navigate = useNavigate();
 
-      const [projects, setProjects] = useState<Project[]>([
+      const [projects] = useState<Project[]>([
           {
             id: 1,
             name: "Modern Villa - Colombo 07",
@@ -78,7 +78,7 @@ const Dashboard = () => {
           }
         ]);
       
-        const [teamMembers, setTeamMembers] = useState<TeamMember[]>([
+        const [teamMembers] = useState<TeamMember[]>([
           {
             id: 1,
             name: "Dr. Kavindu Perera",
@@ -105,7 +105,7 @@ const Dashboard = () => {
           }
         ]);
       
-        const [users, setUsers] = useState<User[]>([
+        const [users] = useState<User[]>([
           {
             id: 1,
             name: "Nimal Perera",
