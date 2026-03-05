@@ -18,7 +18,6 @@ interface Project {
   name: string;
   type: string;
   area: string;
-  bedrooms: number;
   status: string;
   description: string;
   image: string;
@@ -52,7 +51,6 @@ const AdminDashboard: React.FC = () => {
       name: "Modern Villa - Colombo 07",
       type: "Residential",
       area: "2850 sq ft",
-      bedrooms: 5,
       status: "Ongoing",
       description: "Luxury 2-storey villa with rooftop pool and smart home integration.",
       image: "https://picsum.photos/id/1015/300/200"
@@ -62,7 +60,6 @@ const AdminDashboard: React.FC = () => {
       name: "Eco Apartment Complex",
       type: "Residential",
       area: "12400 sq ft",
-      bedrooms: 24,
       status: "Completed",
       description: "Green-certified 4-storey apartment with solar panels.",
       image: "https://picsum.photos/id/133/300/200"
@@ -72,7 +69,6 @@ const AdminDashboard: React.FC = () => {
       name: "Boutique Office - Galle Road",
       type: "Commercial",
       area: "6200 sq ft",
-      bedrooms: 0,
       status: "Ongoing",
       description: "Corporate headquarters with open-plan workspaces.",
       image: "https://picsum.photos/id/201/300/200"
@@ -82,7 +78,6 @@ const AdminDashboard: React.FC = () => {
       name: "Beach House - Negombo",
       type: "Residential",
       area: "1950 sq ft",
-      bedrooms: 4,
       status: "Completed",
       description: "Contemporary beachfront villa with infinity pool.",
       image: "https://picsum.photos/id/1018/300/200"
@@ -235,11 +230,7 @@ const AdminDashboard: React.FC = () => {
   };
 
   return (
-    <>
-    
-    
-    
-    
+    <>    
     <div className="flex h-screen overflow-hidden bg-[#0f172a] text-white font-sans">
       {/* Sidebar */}
       <div className={`fixed md:static inset-y-0 left-0 z-50 w-72 bg-[#1e2937] border-r border-slate-700 transform transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
@@ -367,7 +358,7 @@ const AdminDashboard: React.FC = () => {
                       <img src={project.image} alt={project.name} className="w-full h-48 object-cover" />
                       <div className="p-6">
                         <div className="font-semibold text-lg">{project.name}</div>
-                        <div className="text-slate-400 text-sm mt-1">{project.area} • {project.bedrooms} BR</div>
+                        <div className="text-slate-400 text-sm mt-1">{project.area} BR</div>
                         <div className={`inline-block mt-4 px-4 py-1 text-xs font-semibold rounded-full ${getStatusBadge(project.status)}`}>
                           {project.status}
                         </div>
@@ -383,7 +374,7 @@ const AdminDashboard: React.FC = () => {
           {/* ------------------------------------------------------- */}
 
           {currentPage === 'projects' && (
-            <div>
+            <div className='h-20'>
               <div className="flex justify-between items-center mb-8">
                 <div>
                   <div className="text-3xl font-bold">Projects</div>
@@ -407,7 +398,6 @@ const AdminDashboard: React.FC = () => {
                         <th className="text-left py-6 px-8 font-medium text-slate-400">PROJECT NAME</th>
                         <th className="text-left py-6 px-8 font-medium text-slate-400">TYPE</th>
                         <th className="text-left py-6 px-8 font-medium text-slate-400">AREA</th>
-                        <th className="text-left py-6 px-8 font-medium text-slate-400">BEDROOMS</th>
                         <th className="text-left py-6 px-8 font-medium text-slate-400">STATUS</th>
                         <th className="text-right py-6 px-8 font-medium text-slate-400">ACTIONS</th>
                       </tr>
@@ -421,7 +411,6 @@ const AdminDashboard: React.FC = () => {
                           <td className="py-6 px-8 font-medium">{project.name}</td>
                           <td className="py-6 px-8 text-slate-400">{project.type}</td>
                           <td className="py-6 px-8 text-slate-400">{project.area}</td>
-                          <td className="py-6 px-8">{project.bedrooms}</td>
                           <td className="py-6 px-8">
                             <span className={`px-5 py-1.5 text-xs font-semibold rounded-full ${getStatusBadge(project.status)}`}>
                               {project.status}

@@ -1,47 +1,77 @@
-import { useState } from "react";
-import { FaBars } from "react-icons/fa";
-import { Outlet } from "react-router-dom";
-import AdminSidebar from "./AdminSideBar";
+// Create a new file: src/components/Admin/AdminLayout.tsx
+// This provides the sidebar navigation and main content area for the admin dashboard.
+// It's fully responsive: sidebar collapses to a menu on mobile.
 
-const AdminLayout: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
 
-  const toggleSidebar = (): void => {
-    setIsSidebarOpen((prev) => !prev);
-  };
+const AdminLayout = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row relative">
-      {/* Mobile Toggle Button */}
-      <div className="flex md:hidden p-4 bg-gray-900 text-white z-20">
-        <button onClick={toggleSidebar}>
-          <FaBars size={24} />
-        </button>
-        <h1 className="ml-4 text-xl font-medium">Admin Dashboard</h1>
-      </div>
-
-      {/* Overlay for mobile sidebar */}
-      {isSidebarOpen && (
-        <div
-          className="fixed inset-0 z-10 bg-black bg-opacity-50 md:hidden"
-          onClick={toggleSidebar}
-        />
-      )}
-
+    <div className="flex h-screen bg-slate-900 text-white">
       {/* Sidebar */}
-      {/* <div
-        className={`bg-[#0f172a] w-64 min-h-screen text-white absolute md:relative transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 md:translate-x-0 md:static md:block z-20`}
-      > */}
-      <div className="flex h-screen overflow-hidden bg-[#0f172a] text-white font-sans">
-        <AdminSidebar />
-      </div>
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-slate-800 transform ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        } md:relative md:translate-x-0 transition-transform duration-300 ease-in-out`}
+      >
+        <div className="p-4">
+          <h1 className="text-2xl font-bold mb-8">Admin Dashboard</h1>
+          <nav>
+            <ul className="space-y-4">
+                <li>
+                <Link
+                  to="/admin/dashboard"
+                  className="block py-2 px-4 hover:bg-slate-700 rounded"
+                  onClick={() => setIsSidebarOpen(false)}
+                >
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/admin/projects"
+                  className="block py-2 px-4 hover:bg-slate-700 rounded"
+                  onClick={() => setIsSidebarOpen(false)}
+                >
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/admin/team"
+                  className="block py-2 px-4 hover:bg-slate-700 rounded"
+                  onClick={() => setIsSidebarOpen(false)}
+                >
+                  Team Members
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/admin/users"
+                  className="block py-2 px-4 hover:bg-slate-700 rounded"
+                  onClick={() => setIsSidebarOpen(false)}
+                >
+                  Users
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
 
       {/* Main Content */}
-      <div className="flex-grow p-6 overflow-auto">
+      <main className="flex-1 p-6 overflow-auto">
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden text-white mb-4"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
+          {isSidebarOpen ? 'Close Menu' : 'Open Menu'}
+        </button>
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 };

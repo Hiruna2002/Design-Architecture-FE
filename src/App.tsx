@@ -12,12 +12,12 @@ import Login from './pages/LoginPage'
 import { SignUp } from './pages/SignupPage'
 import Team from './pages/Team'
 
-import AdminDashboard from './components/Admin/AdminDashboard'
-import AdminLayout from './components/Admin/AdminLayout'
-import AdminSidebar from './components/Admin/AdminSideBar'
-import AdminHomePage from './pages/AdminHomePage'
-import ProjectManagement from './components/Admin/ProjectManagement'
-
+// import AdminDashboard from './components/Admin/AdminDashboard'
+import AdminLayout from './components/Admin/AdminLayout'; 
+import AdminProjects from './components/Admin/AdminProjects'; 
+import AdminTeam from './components/Admin/AdminTeam';  
+import AdminUsers from './components/Admin/AdminUsers'; 
+import Dashboard from './components/Admin/Dashboard'
 
 
 const App = () => {
@@ -36,11 +36,13 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/team" element={<Team />} />
         </Route>  
-        <Route path='/admin' element={<AdminLayout />}>
-          <Route index element ={<AdminHomePage />} />
-          <Route path='project' element={<ProjectManagement />} />
-        </Route>        
-        
+        <Route path='/admin' element={<AdminLayout />} >
+          <Route index element={<Dashboard />} /> {/* Default to projects */}
+          <Route path='dashboard' element={<Dashboard />} />
+          <Route path="projects" element={<AdminProjects />} />
+          <Route path="team" element={<AdminTeam />} />
+          <Route path="users" element={<AdminUsers />} />
+        </Route>    
       </Routes>
       {/* <Footer /> */}
     </>
