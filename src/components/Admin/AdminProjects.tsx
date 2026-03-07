@@ -1,9 +1,5 @@
-// Create a new file: src/components/Admin/AdminProjects.tsx
-// This handles CRUD for projects. Assumes backend APIs at /api/projects.
-// Uses modals for add/update. Table is responsive (scrolls horizontally on mobile).
-
 import { useState, useEffect } from 'react';
-import axios from 'axios'; // Assume axios is installed: npm install axios
+import axios from 'axios';
 
 interface Project {
   _id: string;
@@ -28,8 +24,9 @@ const AdminProjects = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get('/api/projects');
+      const res = await axios.get('http://localhost:5173/admin/projects');
       setProjects(res.data);
+      console.log("Projects is:- ", projects)
     } catch (err) {
       console.error('Error fetching projects:', err);
     }
@@ -38,9 +35,11 @@ const AdminProjects = () => {
   const handleAddOrUpdate = async () => {
     try {
       if (currentProject) {
-        await axios.put(`/api/projects/${currentProject._id}`, formData);
+        const res = await axios.put(`/admin/projects/${currentProject._id}`, formData);
+        console.log(res)
       } else {
-        await axios.post('/api/projects', formData);
+        const res = await axios.post('http://localhost:9000/api/projects', formData);
+        console.log(res)
       }
       fetchProjects();
       closeModal();

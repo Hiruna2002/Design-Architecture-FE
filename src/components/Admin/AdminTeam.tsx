@@ -1,7 +1,3 @@
-// Create a new file: src/components/Admin/AdminTeam.tsx
-// Similar to AdminProjects, but for team members.
-// Adjust fields: name, role, email.
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
