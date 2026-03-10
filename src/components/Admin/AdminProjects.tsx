@@ -24,7 +24,7 @@ const AdminProjects = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get('http://localhost:5173/admin/projects');
+      const res = await axios.get('http://localhost:9000/api/projects');
       setProjects(res.data);
       console.log("Projects is:- ", projects)
     } catch (err) {
@@ -35,7 +35,7 @@ const AdminProjects = () => {
   const handleAddOrUpdate = async () => {
     try {
       if (currentProject) {
-        const res = await axios.put(`/admin/projects/${currentProject._id}`, formData);
+        const res = await axios.put(`http://localhost:9000/api/projects/${currentProject._id}`, formData);
         console.log(res)
       } else {
         const res = await axios.post('http://localhost:9000/api/projects', formData);
@@ -51,7 +51,7 @@ const AdminProjects = () => {
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure?')) {
       try {
-        await axios.delete(`/api/projects/${id}`);
+        await axios.delete(`http://localhost:9000/api/projects/${id}`);
         fetchProjects();
       } catch (err) {
         console.error('Error deleting project:', err);
