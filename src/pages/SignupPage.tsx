@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 // import { useAuth } from '../context/AuthContext';
 import { UserPlus, Mail, Lock, User, Phone } from 'lucide-react';
-import { toast } from 'sonner';
+// import { toast } from 'sonner';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const SignUp: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    role: 'user'
   });
   const [loading, setLoading] = useState(false);
 //   const { signUp } = useAuth();
-  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -23,188 +26,232 @@ export const SignUp: React.FC = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+
+  //   if (formData.password !== formData.confirmPassword) {
+  //     toast.error('Passwords do not match');
+  //     return;
+  //   }
+
+  //   if (formData.password.length < 6) {
+  //     toast.error('Password must be at least 6 characters');
+  //     return;
+  //   }
+
+  //   setLoading(true);
+
+  //   try {
+  //   //   await signUp(formData.email, formData.password, formData.name, formData.phone);
+  //     toast.success('Account created successfully!');
+  //     navigate('/');
+  //   } catch (error: any) {
+  //     toast.error(error.message || 'Failed to create account');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // const userRegister = async () => {
+  //   if(formData.password !== formData.confirmPassword){
+  //     console.error("Password and Confirm Password mis match");
+  //     return;
+  //   }
+
+  //   if(formData.password.length < 6){
+  //     console.error("Password should be least 6 characters");
+  //     return;
+  //   }
+
+  //   try{
+  //     const res = await axios.post("http://localhost:9000/api/users",formData);
+  //     console.log(res)
+  //     navigate('/')
+  //   } catch(error){
+  //     console.error(error)
+  //   }
+  // }
+
+  const userRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // ❌ stops the page reload
 
     if (formData.password !== formData.confirmPassword) {
-      toast.error('Passwords do not match');
+      console.error("Password and Confirm Password mismatch");
       return;
     }
 
     if (formData.password.length < 6) {
-      toast.error('Password must be at least 6 characters');
+      console.error("Password should be at least 6 characters");
       return;
     }
 
-    setLoading(true);
-
     try {
-    //   await signUp(formData.email, formData.password, formData.name, formData.phone);
-      toast.success('Account created successfully!');
-      navigate('/');
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to create account');
-    } finally {
-      setLoading(false);
+      const res = await axios.post("http://localhost:9000/api/users", formData);
+      console.log(res);
+      navigate('/'); // ✅ now works
+    } catch (error) {
+      console.error(error);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full">
-        {/* Logo/Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
-            <UserPlus className="w-8 h-8 text-white" />
-          </div>
-          <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
-          <p className="mt-2 text-gray-600">Join us today</p>
+  <div className="min-h-screen bg-[#0f172a] relative flex items-center justify-center px-4 overflow-hidden">
+
+    {/* Background Accent Glow */}
+    <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#86d91c] opacity-20 rounded-full blur-3xl"></div>
+    <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[#86d91c] opacity-10 rounded-full blur-3xl"></div>
+
+    <div className="max-w-md w-full relative z-10">
+
+      {/* Logo/Header */}
+      <div className="text-center mb-10">
+        <div className="inline-flex items-center justify-center w-20 h-20 bg-[#86d91c] rounded-2xl shadow-xl mb-6">
+          <UserPlus className="w-9 h-9 text-[#0f172a]" />
         </div>
-
-        {/* Sign Up Form */}
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                Full Name *
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="John Doe"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                Email Address *
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="you@example.com"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                Phone Number *
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Phone className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="0712345678"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
-                Password *
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="••••••••"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2">
-                Confirm Password *
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  required
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="••••••••"
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
-            >
-              {loading ? 'Creating Account...' : 'Create Account'}
-            </button>
-          </form>
-
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Already have an account?</span>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <Link
-                to="/login"
-                className="w-full flex justify-center py-3 px-4 border-2 border-primary rounded-md shadow-sm text-sm font-semibold text-primary bg-white hover:bg-gray-50"
-              >
-                Sign In Instead
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <p className="mt-8 text-center text-sm text-gray-600">
-          <Link to="/" className="font-medium text-primary hover:text-primary/80">
-            ← Back to Home
-          </Link>
+        <h2 className="text-4xl font-extrabold text-white tracking-tight">
+          Create Account
+        </h2>
+        <p className="mt-2 text-gray-400 text-sm">
+          Join us today
         </p>
       </div>
+
+      {/* Form Card */}
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-8">
+
+        <form className="space-y-6" onSubmit={userRegister}>
+
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">
+              Full Name *
+            </label>
+            <div className="relative group">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-[#86d91c] transition" />
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0f172a] text-white placeholder-gray-500 border border-gray-700 focus:border-[#86d91c] focus:ring-2 focus:ring-[#86d91c]/40 outline-none transition-all duration-300"
+                placeholder="John Doe"
+              />
+            </div>
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">
+              Email Address *
+            </label>
+            <div className="relative group">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-[#86d91c] transition" />
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0f172a] text-white placeholder-gray-500 border border-gray-700 focus:border-[#86d91c] focus:ring-2 focus:ring-[#86d91c]/40 outline-none transition-all duration-300"
+                placeholder="you@example.com"
+              />
+            </div>
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">
+              Phone Number *
+            </label>
+            <div className="relative group">
+              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-[#86d91c] transition" />
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0f172a] text-white placeholder-gray-500 border border-gray-700 focus:border-[#86d91c] focus:ring-2 focus:ring-[#86d91c]/40 outline-none transition-all duration-300"
+                placeholder="0712345678"
+              />
+            </div>
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">
+              Password *
+            </label>
+            <div className="relative group">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-[#86d91c] transition" />
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0f172a] text-white placeholder-gray-500 border border-gray-700 focus:border-[#86d91c] focus:ring-2 focus:ring-[#86d91c]/40 outline-none transition-all duration-300"
+                placeholder="••••••••"
+              />
+            </div>
+          </div>
+
+          {/* Confirm Password */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">
+              Confirm Password *
+            </label>
+            <div className="relative group">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-[#86d91c] transition" />
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                required
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0f172a] text-white placeholder-gray-500 border border-gray-700 focus:border-[#86d91c] focus:ring-2 focus:ring-[#86d91c]/40 outline-none transition-all duration-300"
+                placeholder="••••••••"
+              />
+            </div>
+          </div>
+
+          {/* Button */}
+          <button
+            type="submit"
+            className="w-full py-3 rounded-xl bg-[#86d91c] text-[#0f172a] font-bold shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50"
+          >            
+              Create Account
+          </button>
+        </form>
+
+        {/* Divider */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            Already have an account?
+          </p>
+
+          <Link
+            to="/login"
+            className="mt-3 inline-block w-full py-3 rounded-xl border border-[#86d91c] text-[#86d91c] font-semibold hover:bg-[#86d91c] hover:text-[#0f172a] transition-all duration-300"
+          >
+            Sign In Instead
+          </Link>
+        </div>
+      </div>
+
+      <p className="mt-8 text-center text-sm text-gray-500">
+        <Link to="/" className="hover:text-[#86d91c] transition">
+          ← Back to Home
+        </Link>
+      </p>
+
     </div>
-  );
+  </div>
+);
 };
