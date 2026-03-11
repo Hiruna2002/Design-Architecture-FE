@@ -16,8 +16,6 @@ export const SignUp: React.FC = () => {
     confirmPassword: '',
     role: 'user'
   });
-  const [loading, setLoading] = useState(false);
-//   const { signUp } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -26,54 +24,8 @@ export const SignUp: React.FC = () => {
     });
   };
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   if (formData.password !== formData.confirmPassword) {
-  //     toast.error('Passwords do not match');
-  //     return;
-  //   }
-
-  //   if (formData.password.length < 6) {
-  //     toast.error('Password must be at least 6 characters');
-  //     return;
-  //   }
-
-  //   setLoading(true);
-
-  //   try {
-  //   //   await signUp(formData.email, formData.password, formData.name, formData.phone);
-  //     toast.success('Account created successfully!');
-  //     navigate('/');
-  //   } catch (error: any) {
-  //     toast.error(error.message || 'Failed to create account');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const userRegister = async () => {
-  //   if(formData.password !== formData.confirmPassword){
-  //     console.error("Password and Confirm Password mis match");
-  //     return;
-  //   }
-
-  //   if(formData.password.length < 6){
-  //     console.error("Password should be least 6 characters");
-  //     return;
-  //   }
-
-  //   try{
-  //     const res = await axios.post("http://localhost:9000/api/users",formData);
-  //     console.log(res)
-  //     navigate('/')
-  //   } catch(error){
-  //     console.error(error)
-  //   }
-  // }
-
   const userRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // ❌ stops the page reload
+    e.preventDefault(); 
 
     if (formData.password !== formData.confirmPassword) {
       console.error("Password and Confirm Password mismatch");
@@ -88,7 +40,7 @@ export const SignUp: React.FC = () => {
     try {
       const res = await axios.post("http://localhost:9000/api/users", formData);
       console.log(res);
-      navigate('/'); // ✅ now works
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
