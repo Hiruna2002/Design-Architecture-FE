@@ -13,7 +13,7 @@ interface Project{
 }
 
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState('All');
+  // const [activeFilter, setActiveFilter] = useState('All');
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(()=>{
