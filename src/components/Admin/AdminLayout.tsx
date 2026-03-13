@@ -38,7 +38,7 @@ const AdminLayout = () => {
                   Projects
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to="/admin/team"
                   className="block py-2 px-4 hover:bg-slate-700 rounded"
@@ -46,7 +46,7 @@ const AdminLayout = () => {
                 >
                   Team Members
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   to="/admin/users"

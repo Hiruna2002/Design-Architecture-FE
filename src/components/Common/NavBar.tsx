@@ -12,7 +12,7 @@ export default function Navbar() {
     { name: 'Services', path: '/services' },
     { name: 'Projects', path: '/projects' },
     { name: 'Process', path: '/process' },
-    { name: 'Our Group', path: '/team' },
+    // { name: 'Our Group', path: '/team' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -27,7 +27,7 @@ export default function Navbar() {
             <div className="w-10 h-10 bg-[#a3e635] rotate-45 flex items-center justify-center">
               <span className="text-[#0f172a] -rotate-45 text-xl">LS</span>
             </div>
-            <span className="text-xl tracking-wide">LAHIRU CAD STORE</span>
+            <span className="text-xl tracking-wide">LS MASTER BUILDERS</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -56,11 +56,11 @@ export default function Navbar() {
                 Login
               </Link>
             </button>
-            <button className="px-4 py-2 bg-[#a3e635] text-[#0f172a] rounded-md hover:bg-[#86d91c] transition-colors">
+            {/* <button className="px-4 py-2 bg-[#a3e635] text-[#0f172a] rounded-md hover:bg-[#86d91c] transition-colors">
               <Link to='/signup'>
                 SignUp
               </Link>
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile menu button */}

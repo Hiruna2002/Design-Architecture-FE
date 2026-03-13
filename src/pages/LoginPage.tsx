@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 // import { useAuth } from '../context/AuthContext';
 import { LogIn, Mail, Lock } from 'lucide-react';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 export default function Login () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
 //   const { signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
 
     try {
-    //   await signIn(email, password);
-      toast.success('Successfully logged in!');
-      navigate('/');
+      const res = await axios.post("http://localhost:9000/api/users", {
+        email, password
+      });
+
+      if(res.data.success){
+        toast.success('Successfully logged in!');
+        navigate('/admin');
+      } else {
+        toast.success('User name or password invalid')
+      }
     } catch (error: any) {
       toast.error(error.message || 'Failed to sign in');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -91,14 +95,6 @@ export default function Login () {
 
           {/* Remember + Forgot */}
           <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center text-gray-400">
-              <input
-                type="checkbox"
-                className="h-4 w-4 rounded border-gray-600 bg-[#0f172a] text-[#86d91c] focus:ring-[#86d91c]"
-              />
-              <span className="ml-2">Remember me</span>
-            </label>
-
             <a href="#" className="text-[#86d91c] font-medium hover:underline">
               Forgot password?
             </a>
@@ -107,34 +103,13 @@ export default function Login () {
           {/* Button */}
           <button
             type="submit"
-            disabled={loading}
             className="w-full py-3 rounded-xl bg-[#86d91c] text-[#0f172a] font-bold shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50"
           >
-            {loading ? 'Login...' : 'Login'}
+            Login
           </button>
         </form>
-
-        {/* Divider */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-400 text-sm">
-            Don't have an account?
-          </p>
-
-          <Link
-            to="/signup"
-            className="mt-3 inline-block w-full py-3 rounded-xl border border-[#86d91c] text-[#86d91c] font-semibold hover:bg-[#86d91c] hover:text-[#0f172a] transition-all duration-300"
-          >
-            Create New Account
-          </Link>
         </div>
       </div>
-
-      <p className="mt-8 text-center text-sm text-gray-500">
-        <Link to="/" className="hover:text-[#86d91c] transition">
-          ← Back to Home
-        </Link>
-      </p>
-    </div>
   </div>
   );
 };
