@@ -22,7 +22,7 @@ export default function Projects() {
 
   const getAllProjects = async () => {
     try{
-      const res = await axios.get('http://localhost:9000/api/projects');
+      const res = await axios.get('https://design-architecture-be.vercel.app/api/projects');
       setProjects(res.data)
     } catch (error) {
       console.error(error);
