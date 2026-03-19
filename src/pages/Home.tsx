@@ -1,8 +1,30 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, Ruler, Calculator, Hammer, PenTool, Star } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+interface Project {
+  id: number;
+  name: string;
+  imageUrl: string;
+}
 
 function Home() {
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(()=> {
+    getAllProjects();
+  }, []);
+
+  const getAllProjects = async() => {
+    try{
+      const res = await axios.get('https://design-architecture-be.vercel.app/api/projects')
+      setProjects(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   const services = [
     {
       icon: <PenTool className="w-8 h-8" />,
@@ -28,24 +50,6 @@ function Home() {
       icon: <Hammer className="w-8 h-8" />,
       title: 'Construction',
       description: 'Professional execution from concept to completion'
-    }
-  ];
-
-  const projects = [
-    {
-      title: 'Modern Villa',
-      category: 'Residential',
-      image: 'https://images.unsplash.com/photo-1722421492323-eaf9c401befe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb250ZW1wb3JhcnklMjBob3VzZSUyMGRlc2lnbnxlbnwxfHx8fDE3NzEzMTc2MzN8MA&ixlib=rb-4.1.0&q=80&w=1080'
-    },
-    {
-      title: 'Commercial Complex',
-      category: 'Commercial',
-      image: 'https://images.unsplash.com/photo-1580741753044-b3f303ad361b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwYnVpbGRpbmclMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzcxMzIwNjg5fDA&ixlib=rb-4.1.0&q=80&w=1080'
-    },
-    {
-      title: 'Luxury Residence',
-      category: 'Residential',
-      image: 'https://images.unsplash.com/photo-1758448756880-01dbaf85597d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjByZXNpZGVudGlhbCUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzEyODkwOTF8MA&ixlib=rb-4.1.0&q=80&w=1080'
     }
   ];
 
@@ -219,9 +223,10 @@ function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
+            {Array.isArray(projects) ? (
+              projects.map((project, index) => (
+                <motion.div
+                key={project.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -229,18 +234,20 @@ function Home() {
                 className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer"
               >
                 <img
-                  src={project.image}
-                  alt={project.title}
+                  src={project.imageUrl}
+                  alt={project.name}
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <p className="text-[#a3e635] mb-2">{project.category}</p>
-                    <h3 className="text-2xl">{project.title}</h3>
+                    <h3 className="text-2xl">{project.name}</h3>
                   </div>
                 </div>
               </motion.div>
-            ))}
+              ))
+            ) : (
+              <p>No Projects Available</p>
+            )}
           </div>
 
           <div className="text-center mt-12">

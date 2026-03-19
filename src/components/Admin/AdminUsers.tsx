@@ -23,7 +23,7 @@ const AdminUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('/api/users');
+      const res = await axios.get('https://design-architecture-be.vercel.app/api/users');
       setUsers(res.data);
     } catch (err) {
       console.error('Error fetching users:', err);
@@ -33,9 +33,9 @@ const AdminUsers = () => {
   const handleAddOrUpdate = async () => {
     try {
       if (currentUser) {
-        await axios.put(`/api/users/${currentUser._id}`, formData);
+        await axios.put(`https://design-architecture-be.vercel.app/api/users/${currentUser._id}`, formData);
       } else {
-        await axios.post('/api/users', formData);
+        await axios.post('https://design-architecture-be.vercel.app/api/users', formData);
       }
       fetchUsers();
       closeModal();
@@ -47,7 +47,7 @@ const AdminUsers = () => {
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure?')) {
       try {
-        await axios.delete(`/api/users/${id}`);
+        await axios.delete(`https://design-architecture-be.vercel.app/api/users/${id}`);
         fetchUsers();
       } catch (err) {
         console.error('Error deleting user:', err);

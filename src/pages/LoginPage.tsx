@@ -4,7 +4,6 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-// import { useAuth } from '../context/AuthContext';
 import { LogIn, Mail, Lock } from 'lucide-react';
 import { toast } from 'sonner';
 import axios from 'axios';
@@ -12,7 +11,6 @@ import axios from 'axios';
 export default function Login () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-//   const { signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -98,11 +96,11 @@ export default function Login () {
           </div>
 
           {/* Remember + Forgot */}
-          <div className="flex items-center justify-between text-sm">
+          {/* <div className="flex items-center justify-between text-sm">
             <a href="#" className="text-[#86d91c] font-medium hover:underline">
               Forgot password?
             </a>
-          </div>
+          </div> */}
 
           {/* Button */}
           <button
