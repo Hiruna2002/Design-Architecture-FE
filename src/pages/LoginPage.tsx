@@ -15,7 +15,7 @@ export default function Login () {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:9000/api/users", {
+      const res = await axios.post("https://design-architecture-be.vercel.app/api/users", {
         email, password
       });
 

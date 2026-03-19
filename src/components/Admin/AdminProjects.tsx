@@ -436,7 +436,7 @@ const AdminProjects = () => {
 
     try {
       const res = await axios.post<{ imageUrl: string }>(
-        "http://localhost:9000/api/upload",
+        "https://design-architecture-be.vercel.app/api/upload",
         fd,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -455,7 +455,7 @@ const AdminProjects = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get('http://localhost:9000/api/projects');
+      const res = await axios.get('https://design-architecture-be.vercel.app/api/projects');
       setProjects(res.data);
       console.log("Projects loaded:", res.data);
     } catch (err) {
@@ -466,9 +466,9 @@ const AdminProjects = () => {
   const handleAddOrUpdate = async () => {
     try {
       if (currentProject) {
-        await axios.put(`http://localhost:9000/api/projects/${currentProject._id}`, formData);
+        await axios.put(`https://design-architecture-be.vercel.app/api/projects/${currentProject._id}`, formData);
       } else {
-        await axios.post('http://localhost:9000/api/projects', formData);
+        await axios.post('https://design-architecture-be.vercel.app/api/projects', formData);
       }
       fetchProjects();
       closeModal();
@@ -481,7 +481,7 @@ const AdminProjects = () => {
   const handleDelete = async (id: string) => {
     if (window.confirm('Delete this project?')) {
       try {
-        await axios.delete(`http://localhost:9000/api/projects/${id}`);
+        await axios.delete(`https://design-architecture-be.vercel.app/api/projects/${id}`);
         fetchProjects();
       } catch (err) {
         console.error('Error deleting:', err);

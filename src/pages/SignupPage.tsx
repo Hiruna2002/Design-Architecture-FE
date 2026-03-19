@@ -38,7 +38,7 @@ export const SignUp: React.FC = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:9000/api/users", formData);
+      const res = await axios.post("https://design-architecture-be.vercel.app/api/users", formData);
       console.log(res);
       navigate('/');
     } catch (error) {
