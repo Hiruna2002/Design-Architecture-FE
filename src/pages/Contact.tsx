@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -20,15 +21,31 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const form = e.currentTarget;
+
     e.preventDefault();
-    // In a real application, this would send the form data to a server
     console.log('Form submitted:', formData);
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     }, 3000);
+
+    try {
+      const response = await emailjs.send(
+        "service_4jhbtbl",
+        "template_yew9n6a",
+        formData,
+        "jZQU_K7Z5Jj3iM9vZ"
+      );
+
+      console.log("✅ Email sent successfully!", response);
+
+      form.reset();
+    } catch (error) {
+      console.error("❌ Failed to send email:", error);
+    }
   };
 
   return (
