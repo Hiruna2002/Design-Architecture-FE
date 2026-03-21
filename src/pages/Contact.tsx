@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 import emailjs from "@emailjs/browser";
 
 export default function Contact() {
+
+  useEffect(()=> {
+      emailjs.init("jZQU_K7Z5Jj3iM9vZ");
+    }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,7 +16,7 @@ export default function Contact() {
     message: ''
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -25,9 +30,9 @@ export default function Contact() {
 
     e.preventDefault();
     console.log('Form submitted:', formData);
-    setSubmitted(true);
+    setIsSubmitted(true);
     setTimeout(() => {
-      setSubmitted(false);
+      setIsSubmitted(false);
       setFormData({ name: '', email: '', subject: '', message: '' });
     }, 3000);
 
@@ -40,6 +45,7 @@ export default function Contact() {
       );
 
       console.log("✅ Email sent successfully!", response);
+      setIsSubmitted(true)
 
       form.reset();
     } catch (error) {
@@ -158,11 +164,30 @@ export default function Contact() {
               <div className="bg-gray-50 p-8 rounded-lg shadow-lg">
                 <h2 className="text-3xl mb-6">Send Us a Message</h2>
                 
-                {submitted && (
+                {/* {submitted && (
                   <div className="mb-6 p-4 bg-[#a3e635] text-[#0f172a] rounded-lg">
                     Thank you! Your message has been sent successfully.
                   </div>
-                )}
+                )} */}
+
+                {isSubmitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-12"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                      <CheckCircle2 className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 text-foreground">
+                      Message Sent!
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Thank you for reaching out. We&apos;ll get back to you within 24
+                      hours.
+                    </p>
+                  </motion.div>
+                ) : (
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
@@ -244,6 +269,7 @@ export default function Contact() {
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </form>
+                )}
               </div>
             </motion.div>
           </div>
