@@ -7,6 +7,7 @@ interface Project{
   name: string;
   description: string;
   imageUrl: string;
+  subImageUrl: [string];
   // category: string;
   cost: string;
   area: string;

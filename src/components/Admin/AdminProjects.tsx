@@ -408,6 +408,7 @@ interface Project {
   name: string;
   description: string;
   imageUrl: string;
+  subImageUrl: string[];
   // category: string;
   cost: string;
   area: string;
@@ -420,6 +421,7 @@ const AdminProjects = () => {
   
   const [formData, setFormData] = useState({
     imageUrl: '',
+    subImageUrl: [] as string[],
     name: '',
     description: '',
     // category: '',
@@ -448,6 +450,34 @@ const AdminProjects = () => {
       alert("Image upload failed. Please try again.");
     }
   };
+
+  const handleSubImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    const fd = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+      fd.append("images", files[i]); 
+    }
+
+    try {
+      const res = await axios.post<{ imageUrls: string[] }>(
+        "https://design-architecture-be.vercel.app/api/subImagesUpload",
+        fd,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+
+      setFormData((prev) => ({
+      ...prev,
+      subImageUrl: [...prev.subImageUrl, ...res.data.imageUrls],
+    }));
+      console.log(" Cloudinary URL received:", res.data.imageUrls);
+    } catch (err) {
+      console.error("Upload failed:", err);
+      alert("Image upload failed. Please try again.");
+    }
+  }
 
   useEffect(() => {
     fetchProjects();
@@ -493,6 +523,7 @@ const AdminProjects = () => {
     setCurrentProject(project || null);
     setFormData(project ? {
       imageUrl: project.imageUrl || '',
+      subImageUrl: project.subImageUrl || '',
       name: project.name,
       description: project.description,
       // category: project.category,
@@ -500,6 +531,7 @@ const AdminProjects = () => {
       cost: project.cost
     } : {
       imageUrl: '',
+      subImageUrl: [],
       name: '',
       description: '',
       // category: '',
@@ -578,30 +610,33 @@ const AdminProjects = () => {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-slate-800 p-6 rounded w-full max-w-md overflow-y-auto max-h-[80vh]">
+          <div className="bg-slate-800 p-6 rounded w-full max-w-2xl overflow-y-auto max-h-[80vh]">
             <h3 className="text-xl mb-4">{currentProject ? 'Update Project' : 'Add Project'}</h3>
-
+            <span>
             <input 
               type="text" 
               placeholder="Name" 
               value={formData.name} 
               onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
-              className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" 
+              className="w-[300px] mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" 
             />
-            <textarea 
-              placeholder="Description" 
-              value={formData.description} 
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })} 
-              className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" 
-            />
-            {/* <input type="text" placeholder="Category" value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" /> */}
             <input 
               type="number" 
               placeholder="Area (sq ft)" 
               value={formData.area} 
               onChange={(e) => setFormData({ ...formData, area: e.target.value })} 
+              className="w-[288px] ml-5 mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" 
+            />
+            </span>
+            <textarea 
+              placeholder="Discription" 
+              value={formData.description} 
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })} 
               className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" 
             />
+            
+            {/* <input type="text" placeholder="Category" value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" /> */}
+            
             <input 
               type="number" 
               placeholder="Cost (Rs.)" 
@@ -612,7 +647,23 @@ const AdminProjects = () => {
 
             <div className="mb-4">
               <label className="block mb-2 text-white">Upload Photo</label>
-              <input type="file" accept="image/*" onChange={handleImageChange} className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white" />
+              <input 
+                type="file" 
+                accept="image/*" 
+                onChange={handleImageChange} 
+                className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white" 
+              />
+
+              <div className='mt-4'>
+                <label className='block mb-2 text-white'>Upload Sub Photo</label>
+                <input 
+                  type='file'
+                  accept='image/*'
+                  multiple
+                  onChange={handleSubImageChange}
+                  className='w-full p-2 bg-slate-700 border border-slate-600 rounded text-white'
+                />
+              </div>
 
               {/* Preview for NEW uploaded image */}
               {formData.imageUrl && (
