@@ -7,7 +7,6 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     subject: '',
     message: ''
   });
@@ -29,7 +28,7 @@ export default function Contact() {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
     }, 3000);
 
     try {
@@ -195,21 +194,6 @@ export default function Contact() {
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a3e635] bg-white"
                       placeholder="your@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block mb-2 text-gray-700">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a3e635] bg-white"
-                      placeholder="0761 380 569"
                     />
                   </div>
 
