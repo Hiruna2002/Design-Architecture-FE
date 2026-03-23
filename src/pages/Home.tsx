@@ -71,6 +71,10 @@ function Home() {
     }
   ];
 
+  const handleServices = () => {
+    console.log("Clicked clicked")
+  }
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -167,7 +171,7 @@ function Home() {
 
       {/* Services Preview */}
       <section className="bg-[#0f172a] py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" onClick={handleServices}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

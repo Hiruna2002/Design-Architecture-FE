@@ -15,6 +15,7 @@ import AdminProjects from './components/Admin/AdminProjects';
 import AdminTeam from './components/Admin/AdminTeam';  
 import AdminUsers from './components/Admin/AdminUsers'; 
 import Dashboard from './components/Admin/Dashboard'
+import AdminServices from './components/Admin/AdminServices'
 
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="projects" element={<AdminProjects />} />
           <Route path="team" element={<AdminTeam />} />
           <Route path="users" element={<AdminUsers />} />
+          <Route path='services' element={<AdminServices />} />
         </Route>    
       </Routes>
     </>

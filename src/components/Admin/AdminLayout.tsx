@@ -56,6 +56,15 @@ const AdminLayout = () => {
                   Users
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/admin/services"
+                  className='block py-2 px-4 hover:bg-slate-700 rounded'
+                  onClick={() => setIsSidebarOpen(false)}
+                >
+                  Service
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>
