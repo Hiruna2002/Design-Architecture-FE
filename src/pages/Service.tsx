@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { PenTool, Building2, Calculator, Ruler, Hammer, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -23,7 +23,7 @@ export default function Services() {
   const fetchService = async () => {
       console.log("Service id is: ", id)
       const res = await axios.get(
-        `http://localhost:9000/api/services/${id}`
+        `https://design-architecture-be.vercel.app/api/services/${id}`
       );
       setService(res.data);
   };
@@ -113,15 +113,4 @@ export default function Services() {
       </section>
     </div>
   );
-}
-
-function getServiceImage(index: number): string {
-  const images = [
-    'https://images.unsplash.com/photo-1769147339214-076740872485?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJ1Y3R1cmFsJTIwZW5naW5lZXJpbmclMjBibHVlcHJpbnR8ZW58MXx8fHwxNzcxMzQ3MDE2fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    'https://images.unsplash.com/photo-1758998202918-d921125a700f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBpbnRlcmlvciUyMHJlbm92YXRpb258ZW58MXx8fHwxNzcxMzQ3MDE1fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    'https://images.unsplash.com/photo-1695067440629-b5e513976100?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwYnVpbGRpbmclMjBleHRlcmlvcnxlbnwxfHx8fDE3NzEyMzkzMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    'https://images.unsplash.com/photo-1580741753044-b3f303ad361b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwYnVpbGRpbmclMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzcxMzIwNjg5fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    'https://images.unsplash.com/photo-1722421492323-eaf9c401befe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb250ZW1wb3JhcnklMjBob3VzZSUyMGRlc2lnbnxlbnwxfHx8fDE3NzEzMTc2MzN8MA&ixlib=rb-4.1.0&q=80&w=1080'
-  ];
-  return images[index % images.length];
 }

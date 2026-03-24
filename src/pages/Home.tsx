@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Building2, Ruler, Calculator, Hammer, PenTool, Star } from 'lucide-react';
+import { ArrowRight, Building2, Ruler, Hammer, Star } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -32,7 +32,7 @@ function Home() {
 
   const getAllServices = async() => {
     try{
-      const res = await axios.get('http://localhost:9000/api/services')
+      const res = await axios.get('https://design-architecture-be.vercel.app/api/services')
       setServices(res.data);
     } catch(error){
       console.error(error)
@@ -47,33 +47,6 @@ function Home() {
       console.error(error);
     }
   }
-  // const services = [
-  //   {
-  //     icon: <PenTool className="w-8 h-8" />,
-  //     title: 'Architectural Design',
-  //     description: '2D & 3D design solutions tailored to your vision'
-  //   },
-  //   {
-  //     icon: <Building2 className="w-8 h-8" />,
-  //     title: 'Renovation Design',
-  //     description: 'Transform existing spaces with modern designs'
-  //   },
-  //   {
-  //     icon: <Calculator className="w-8 h-8" />,
-  //     title: 'Estimate Preparation',
-  //     description: 'Accurate cost estimation and budgeting'
-  //   },
-  //   {
-  //     icon: <Ruler className="w-8 h-8" />,
-  //     title: 'Structural Design',
-  //     description: 'Engineering excellence in every structure'
-  //   },
-  //   {
-  //     icon: <Hammer className="w-8 h-8" />,
-  //     title: 'Construction',
-  //     description: 'Professional execution from concept to completion'
-  //   }
-  // ];
 
   const testimonials = [
     {

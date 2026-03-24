@@ -47,7 +47,7 @@ export const AdminServices = () => {
 
   const fetchService = async () => {
     try {
-      const res = await axios.get('http://localhost:9000/api/services');
+      const res = await axios.get('https://design-architecture-be.vercel.app/api/services');
       setService(res.data);
       console.log("Service loaded:", res.data);
     } catch (err) {
@@ -58,9 +58,9 @@ export const AdminServices = () => {
   const handleAddOrUpdate = async () => {
     try {
       if (currentService) {
-        await axios.put(`http://localhost:9000/api/services/${currentService._id}`, formData);
+        await axios.put(`https://design-architecture-be.vercel.app/api/services/${currentService._id}`, formData);
       } else {
-        await axios.post('http://localhost:9000/api/services', formData);
+        await axios.post('https://design-architecture-be.vercel.app/api/services', formData);
       }
       fetchService();
       closeModal();
@@ -73,7 +73,7 @@ export const AdminServices = () => {
   const handleDelete = async (id: string) => {
     if (window.confirm('Delete this Service?')) {
       try {
-        await axios.delete(`http://localhost:9000/api/services/${id}`);
+        await axios.delete(`https://design-architecture-be.vercel.app/api/services/${id}`);
         fetchService();
       } catch (err) {
         console.error('Error deleting:', err);
