@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Service {
     _id: string;
@@ -14,6 +14,10 @@ export const AdminServices = () => {
     const [currentService, setCurrentService] = useState<Service | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    useEffect(() => {
+        fetchService();
+    }, []);
+
     const [formData, setFormData] = useState ({
         name: '',
         desc: '',
@@ -26,8 +30,8 @@ export const AdminServices = () => {
     setFormData(service ? {
       name: service.name || '',
       desc: service.desc || '',
-      exp: service.exp || 0 ,
-      benifits: service.benifits || ''
+      exp: Number(service.exp),
+      benifits: service.benifits || []
     } : {
       name: '',
       desc: '',
@@ -43,7 +47,7 @@ export const AdminServices = () => {
 
   const fetchService = async () => {
     try {
-      const res = await axios.get('https://design-architecture-be.vercel.app/api/services');
+      const res = await axios.get('http://localhost:9000/api/services');
       setService(res.data);
       console.log("Service loaded:", res.data);
     } catch (err) {
@@ -54,9 +58,9 @@ export const AdminServices = () => {
   const handleAddOrUpdate = async () => {
     try {
       if (currentService) {
-        await axios.put(`https://design-architecture-be.vercel.app/api/services/${currentService._id}`, formData);
+        await axios.put(`http://localhost:9000/api/services/${currentService._id}`, formData);
       } else {
-        await axios.post('https://design-architecture-be.vercel.app/api/services', formData);
+        await axios.post('http://localhost:9000/api/services', formData);
       }
       fetchService();
       closeModal();
@@ -69,7 +73,7 @@ export const AdminServices = () => {
   const handleDelete = async (id: string) => {
     if (window.confirm('Delete this Service?')) {
       try {
-        await axios.delete(`https://design-architecture-be.vercel.app/api/services/${id}`);
+        await axios.delete(`http://localhost:9000/api/services/${id}`);
         fetchService();
       } catch (err) {
         console.error('Error deleting:', err);
@@ -145,8 +149,8 @@ export const AdminServices = () => {
                     
             <textarea  
               placeholder="Benifits of Customers" 
-              value={formData.benifits} 
-              onChange={(e) => setFormData({ ...formData, benifits: e.target.value.split(",") })} 
+              value={formData.benifits.join(",")} 
+              onChange={(e) => setFormData({ ...formData, benifits: e.target.value.split(",").map(b => b.trim()) })} 
               className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" 
             />
 

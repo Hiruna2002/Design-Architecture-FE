@@ -3,6 +3,7 @@ import { ArrowRight, Building2, Ruler, Calculator, Hammer, PenTool, Star } from 
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 interface Project {
   id: number;
@@ -10,12 +11,33 @@ interface Project {
   imageUrl: string;
 }
 
+interface Service {
+  _id: string;
+  name: string;
+  desc: string;
+  exp: number;
+  benifits: string[];
+}
+
 function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
+
+  const navigate = useNavigate();
 
   useEffect(()=> {
     getAllProjects();
+    getAllServices();
   }, []);
+
+  const getAllServices = async() => {
+    try{
+      const res = await axios.get('http://localhost:9000/api/services')
+      setServices(res.data);
+    } catch(error){
+      console.error(error)
+    }
+  }
 
   const getAllProjects = async() => {
     try{
@@ -25,33 +47,33 @@ function Home() {
       console.error(error);
     }
   }
-  const services = [
-    {
-      icon: <PenTool className="w-8 h-8" />,
-      title: 'Architectural Design',
-      description: '2D & 3D design solutions tailored to your vision'
-    },
-    {
-      icon: <Building2 className="w-8 h-8" />,
-      title: 'Renovation Design',
-      description: 'Transform existing spaces with modern designs'
-    },
-    {
-      icon: <Calculator className="w-8 h-8" />,
-      title: 'Estimate Preparation',
-      description: 'Accurate cost estimation and budgeting'
-    },
-    {
-      icon: <Ruler className="w-8 h-8" />,
-      title: 'Structural Design',
-      description: 'Engineering excellence in every structure'
-    },
-    {
-      icon: <Hammer className="w-8 h-8" />,
-      title: 'Construction',
-      description: 'Professional execution from concept to completion'
-    }
-  ];
+  // const services = [
+  //   {
+  //     icon: <PenTool className="w-8 h-8" />,
+  //     title: 'Architectural Design',
+  //     description: '2D & 3D design solutions tailored to your vision'
+  //   },
+  //   {
+  //     icon: <Building2 className="w-8 h-8" />,
+  //     title: 'Renovation Design',
+  //     description: 'Transform existing spaces with modern designs'
+  //   },
+  //   {
+  //     icon: <Calculator className="w-8 h-8" />,
+  //     title: 'Estimate Preparation',
+  //     description: 'Accurate cost estimation and budgeting'
+  //   },
+  //   {
+  //     icon: <Ruler className="w-8 h-8" />,
+  //     title: 'Structural Design',
+  //     description: 'Engineering excellence in every structure'
+  //   },
+  //   {
+  //     icon: <Hammer className="w-8 h-8" />,
+  //     title: 'Construction',
+  //     description: 'Professional execution from concept to completion'
+  //   }
+  // ];
 
   const testimonials = [
     {
@@ -71,8 +93,9 @@ function Home() {
     }
   ];
 
-  const handleServices = () => {
-    console.log("Clicked clicked")
+  const handleServices = (id: string) => {
+    console.log("Clicked ID:", id);
+    navigate(`/services/${id}`)
   }
 
   return (
@@ -171,7 +194,7 @@ function Home() {
 
       {/* Services Preview */}
       <section className="bg-[#0f172a] py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" onClick={handleServices}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -185,18 +208,19 @@ function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
-                key={index}
+                key={service._id}
+                onClick={() => handleServices(service._id)}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className="bg-[#1e293b] p-6 rounded-lg hover:shadow-xl hover:shadow-[#a3e635]/10 transition-all duration-300 group cursor-pointer border-2 border-transparent hover:border-[#a3e635]"
               >
-                <div className="text-[#a3e635] mb-4 group-hover:scale-110 transition-transform">
+                {/* <div className="text-[#a3e635] mb-4 group-hover:scale-110 transition-transform">
                   {service.icon}
-                </div>
-                <h3 className="text-xl text-white mb-2">{service.title}</h3>
-                <p className="text-gray-400">{service.description}</p>
+                </div> */}
+                <h3 className="text-xl text-white mb-2">{service.name}</h3>
+                <p className="text-gray-400">{service.desc}</p>
               </motion.div>
             ))}
           </div>

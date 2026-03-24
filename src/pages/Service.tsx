@@ -1,69 +1,34 @@
 import { motion } from 'motion/react';
 import { PenTool, Building2, Calculator, Ruler, Hammer, CheckCircle } from 'lucide-react';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+interface Service {
+    _id: string;
+    name: string;
+    desc: string;
+    exp: number;
+    benifits: string[];
+}
 
 export default function Services() {
-  const services = [
-    {
-      icon: <PenTool className="w-12 h-12" />,
-      title: 'Architectural Design (2D & 3D)',
-      description: 'Comprehensive architectural design services transforming your ideas into detailed plans and realistic 3D visualizations.',
-      benefits: [
-        'Detailed 2D floor plans and elevations',
-        'Photorealistic 3D renderings',
-        'Virtual walkthroughs and presentations',
-        'Custom design tailored to your needs',
-        'Multiple design iterations and revisions'
-      ]
-    },
-    {
-      icon: <Building2 className="w-12 h-12" />,
-      title: 'Renovation Design',
-      description: 'Expert renovation planning that breathes new life into existing structures while maximizing functionality and aesthetics.',
-      benefits: [
-        'Space optimization and reconfiguration',
-        'Modern design integration',
-        'Structural assessment and planning',
-        'Material selection guidance',
-        'Cost-effective renovation solutions'
-      ]
-    },
-    {
-      icon: <Calculator className="w-12 h-12" />,
-      title: 'Estimate Preparation',
-      description: 'Accurate and detailed cost estimations to help you budget effectively and make informed financial decisions.',
-      benefits: [
-        'Comprehensive material quantity takeoffs',
-        'Labor cost calculations',
-        'Market rate analysis',
-        'Budget optimization strategies',
-        'Transparent pricing breakdown'
-      ]
-    },
-    {
-      icon: <Ruler className="w-12 h-12" />,
-      title: 'Structural Design',
-      description: 'Engineering excellence ensuring your building is safe, durable, and compliant with all structural standards.',
-      benefits: [
-        'Load-bearing calculations',
-        'Foundation design and planning',
-        'Beam and column specifications',
-        'Building code compliance',
-        'Structural integrity analysis'
-      ]
-    },
-    {
-      icon: <Hammer className="w-12 h-12" />,
-      title: 'Construction',
-      description: 'Professional construction services bringing architectural designs to life with precision and quality craftsmanship.',
-      benefits: [
-        'Experienced construction teams',
-        'Project timeline management',
-        'Quality control and supervision',
-        'Coordination with contractors',
-        'On-site problem solving'
-      ]
-    }
-  ];
+  const {id} = useParams();
+  const [service, setService] = useState<Service>()
+
+  useEffect(() => {
+    fetchService();
+  }, [id]);
+
+  const fetchService = async () => {
+      console.log("Service id is: ", id)
+      const res = await axios.get(
+        `http://localhost:9000/api/services/${id}`
+      );
+      setService(res.data);
+  };
+
+  if (!service) return <p>Loading...</p>;
 
   return (
     <div className="min-h-screen">
@@ -90,27 +55,25 @@ export default function Services() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-16">
-            {services.map((service, index) => (
+            {service && (
               <motion.div
-                key={index}
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
-                  index % 2 === 1 ? 'lg:grid-flow-dense' : ''
-                }`}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
               >
                 {/* Service Info */}
-                <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
+                <div>
                   <div className="bg-[#0f172a] text-white p-8 rounded-lg shadow-xl">
-                    <div className="text-[#a3e635] mb-4">{service.icon}</div>
-                    <h2 className="text-3xl mb-4">{service.title}</h2>
-                    <p className="text-gray-300 mb-6">{service.description}</p>
-                    
-                    <h3 className="text-xl text-[#a3e635] mb-4">Benefits to Clients:</h3>
+                    <h2 className="text-3xl mb-4">{service.name}</h2>
+                    <p className="text-gray-300 mb-6">{service.desc}</p>
+
+                    <h3 className="text-xl text-[#a3e635] mb-4">
+                      Benefits to Clients:
+                    </h3>
+
                     <ul className="space-y-3">
-                      {service.benefits.map((benefit, idx) => (
+                      {service.benifits.map((benefit: string, idx: number) => (
                         <li key={idx} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-[#a3e635] mt-0.5 flex-shrink-0" />
                           <span className="text-gray-300">{benefit}</span>
@@ -119,20 +82,8 @@ export default function Services() {
                     </ul>
                   </div>
                 </div>
-
-                {/* Service Image */}
-                <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                  <div className="relative group">
-                    <div className="absolute -inset-4 bg-[#a3e635] rounded-lg opacity-20 group-hover:opacity-30 transition-opacity"></div>
-                    <img
-                      src={getServiceImage(index)}
-                      alt={service.title}
-                      className="relative rounded-lg shadow-2xl w-full h-96 object-cover"
-                    />
-                  </div>
-                </div>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
