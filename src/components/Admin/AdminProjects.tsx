@@ -6,7 +6,7 @@ interface Project {
   name: string;
   description: string;
   imageUrl: string;
-  subImageUrl: string[];
+  subImageUrls: string[];
   // category: string;
   cost: string;
   area: string;
@@ -19,7 +19,7 @@ const AdminProjects = () => {
   
   const [formData, setFormData] = useState({
     imageUrl: '',
-    subImageUrl: [] as string[],
+    subImageUrls: [] as string[],
     name: '',
     description: '',
     // category: '',
@@ -68,7 +68,7 @@ const AdminProjects = () => {
 
       setFormData((prev) => ({
       ...prev,
-      subImageUrl: [...prev.subImageUrl, ...res.data.imageUrls],
+      subImageUrls: [...prev.subImageUrls, ...res.data.imageUrls],
     }));
       console.log(" Cloudinary URL received:", res.data.imageUrls);
     } catch (err) {
@@ -93,10 +93,16 @@ const AdminProjects = () => {
 
   const handleAddOrUpdate = async () => {
     try {
+      const payload = {
+        ...formData,
+        subImageUrls: formData.subImageUrls,
+      };
+
       if (currentProject) {
-        await axios.put(`https://design-architecture-be.vercel.app/api/projects/${currentProject._id}`, formData);
+        await axios.put(`https://design-architecture-be.vercel.app/api/projects/${currentProject._id}`, payload);
       } else {
-        await axios.post('https://design-architecture-be.vercel.app/api/projects', formData);
+        console.log("form data is: ", payload)
+        await axios.post('https://design-architecture-be.vercel.app/api/projects', payload);
       }
       fetchProjects();
       closeModal();
@@ -121,7 +127,7 @@ const AdminProjects = () => {
     setCurrentProject(project || null);
     setFormData(project ? {
       imageUrl: project.imageUrl || '',
-      subImageUrl: project.subImageUrl || '',
+      subImageUrls: project.subImageUrls || [],
       name: project.name,
       description: project.description,
       // category: project.category,
@@ -129,7 +135,7 @@ const AdminProjects = () => {
       cost: project.cost
     } : {
       imageUrl: '',
-      subImageUrl: [],
+      subImageUrls: [],
       name: '',
       description: '',
       // category: '',
@@ -256,7 +262,7 @@ const AdminProjects = () => {
                 <label className='block mb-2 text-white'>Upload Sub Photo</label>
                 <input 
                   type='file'
-                  accept='image/*'
+                  accept='image/*,application/pdf'
                   multiple
                   onChange={handleSubImageChange}
                   className='w-full p-2 bg-slate-700 border border-slate-600 rounded text-white'

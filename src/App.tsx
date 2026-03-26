@@ -9,6 +9,8 @@ import ContactPage from './pages/Contact'
 import Login from './pages/LoginPage'
 import { SignUp } from './pages/SignupPage'
 import Team from './pages/Team'
+import ProductDetails from './pages/ProductDetails'
+import FeedbackPage from './pages/Feedback'
 
 import AdminLayout from './components/Admin/AdminLayout'; 
 import AdminProjects from './components/Admin/AdminProjects'; 
@@ -33,6 +35,8 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/team" element={<Team />} />
           <Route path="/services/:id" element={<ServicePage />} />
+          <Route path="/projects/:id" element={<ProductDetails />} />
+          <Route path='/feedback' element={<FeedbackPage />} />
         </Route>  
         <Route path='/admin' element={<AdminLayout />} >
           <Route index element={<Dashboard />} />

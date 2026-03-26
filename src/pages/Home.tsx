@@ -4,9 +4,11 @@ import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import StarRating from "../components/user/StarRating";
+ 
 
 interface Project {
-  id: number;
+  _id: string;
   name: string;
   imageUrl: string;
 }
@@ -19,15 +21,25 @@ interface Service {
   benifits: string[];
 }
 
+interface Feedback {
+  _id: string;
+  name: string;
+  message: string;
+  rating: number;
+  createdAt?: string;
+}
+
 function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [services, setServices] = useState<Service[]>([]);
+  const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
 
   const navigate = useNavigate();
 
   useEffect(()=> {
     getAllProjects();
     getAllServices();
+    fetchFeedbacks();
   }, []);
 
   const getAllServices = async() => {
@@ -41,34 +53,49 @@ function Home() {
 
   const getAllProjects = async() => {
     try{
-      const res = await axios.get('https://design-architecture-be.vercel.app/api/projects')
+      const res = await axios.get('http://localhost:9000/api/projects')
       setProjects(res.data);
     } catch (error) {
       console.error(error);
     }
   }
 
-  const testimonials = [
-    {
-      name: 'Rajitha Fernando',
-      text: 'Exceptional architectural design! Lahiru transformed our vision into reality with perfect precision.',
-      rating: 5
-    },
-    {
-      name: 'Nimal Perera',
-      text: 'Professional service from start to finish. The 3D visualizations helped us make confident decisions.',
-      rating: 5
-    },
-    {
-      name: 'Chamari Silva',
-      text: 'Outstanding renovation design work. Highly recommended for anyone seeking quality architectural services.',
-      rating: 5
+  // const testimonials = [
+  //   {
+  //     name: 'Rajitha Fernando',
+  //     text: 'Exceptional architectural design! Lahiru transformed our vision into reality with perfect precision.',
+  //     rating: 5
+  //   },
+  //   {
+  //     name: 'Nimal Perera',
+  //     text: 'Professional service from start to finish. The 3D visualizations helped us make confident decisions.',
+  //     rating: 5
+  //   },
+  //   {
+  //     name: 'Chamari Silva',
+  //     text: 'Outstanding renovation design work. Highly recommended for anyone seeking quality architectural services.',
+  //     rating: 5
+  //   }
+  // ];
+
+  const fetchFeedbacks = async () => {
+    try {
+      const res = await axios.get<Feedback[]>(
+        "http://localhost:9000/api/feedback"
+      );
+      setFeedbacks(res.data);
+    } catch (err) {
+      console.error("Error fetching feedbacks:", err);
     }
-  ];
+  };
 
   const handleServices = (id: string) => {
     console.log("Clicked ID:", id);
     navigate(`/services/${id}`)
+  }
+
+  const handleProject = (id: string) => {
+    navigate(`/projects/${id}`)
   }
 
   return (
@@ -227,7 +254,8 @@ function Home() {
             {Array.isArray(projects) ? (
               projects.map((project, index) => (
                 <motion.div
-                key={project.id}
+                key={project._id}
+                onClick={() => handleProject(project._id)}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -277,7 +305,7 @@ function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+            {feedbacks.slice(0, 3).map((f, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -287,12 +315,16 @@ function Home() {
                 className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#a3e635]"
               >
                 <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-[#a3e635] fill-[#a3e635]" />
+                  {[...Array(f.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 text-[#a3e635] fill-[#a3e635]"
+                    />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-4 italic">"{testimonial.text}"</p>
-                <p className="text-[#0f172a]">- {testimonial.name}</p>
+
+                <p className="text-gray-600 mb-4 italic">"{f.message}"</p>
+                <p className="text-[#0f172a]">- {f.name}</p>
               </motion.div>
             ))}
           </div>
