@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import logo from '../../assets/Design-Architecture-Logo.jpeg'
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,10 +12,16 @@ function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-[#a3e635] rotate-45 flex items-center justify-center">
-                <span className="text-[#0f172a] -rotate-45 text-xl">LS</span>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <span>
+                  <img 
+                  src={logo}
+                  alt="Logo"
+                  className='rounded-full object-cover'
+                />
+                </span>
               </div>
-              <span className="text-xl">LAHIRU SRIMAL</span>
+              <span className="text-xl">LS MASTER BUILDERS</span>
             </div>
             <p className="text-gray-400 mb-4">
               Professional Architectural Designer creating innovative spaces and structural solutions.

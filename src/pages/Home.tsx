@@ -207,16 +207,6 @@ function Home() {
               </motion.div>
             ))}
           </div>
-
-          <div className="text-center mt-12">
-            <Link
-              to="/services"
-              className="bg-[#a3e635] text-[#0f172a] px-8 py-3 rounded hover:bg-[#bef264] transition-all inline-flex items-center"
-            >
-              View All Services
-              <ArrowRight className="ml-2" size={20} />
-            </Link>
-          </div>
         </div>
       </section>
 

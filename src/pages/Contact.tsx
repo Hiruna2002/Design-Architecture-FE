@@ -110,7 +110,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-lg mb-1">Email</h3>
-                    <p className="text-gray-600 break-all">Lahiru.cadstoral@gmail.com</p>
+                    <p className="text-gray-600 break-all">Lahirucadstore1@gmail.com</p>
                   </div>
                 </div>
 
@@ -121,7 +121,7 @@ export default function Contact() {
                   <div>
                     <h3 className="text-lg mb-1">Address</h3>
                     <p className="text-gray-600">
-                      No 67/H.N. Samoal Mie,<br />
+                      No 67/H/1, Samagi Mawatha,<br />
                       Kuludewala, Panadura
                     </p>
                   </div>

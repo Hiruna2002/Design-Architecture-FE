@@ -102,6 +102,7 @@ export const AdminServices = () => {
               <th className="py-2 px-4 border-b border-slate-700 text-left">Description</th>
               <th className="py-2 px-4 border-b border-slate-700 text-left">Experience</th>
               <th className="py-2 px-4 border-b border-slate-700 text-left">Benifits</th>
+              <th className="py-2 px-4 border-b border-slate-700 text-left">Action</th>
             </tr>
           </thead>
           <tbody>
