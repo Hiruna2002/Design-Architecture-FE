@@ -92,7 +92,15 @@ function Footer() {
           <p className="text-gray-400">
             &copy; {currentYear} Lahiru Srimal. All rights reserved.
           </p>
-          <p>Develop by DEV09 Solutions</p>
+          <p>
+            <a 
+              href='https://www.dev09solutions.com/' 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Develop by DEV09 Solutions
+            </a>
+          </p>
         </div>
       </div>
     </footer>
