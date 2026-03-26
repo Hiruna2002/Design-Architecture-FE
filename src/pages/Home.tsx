@@ -97,14 +97,12 @@ function Home() {
           >
             <div className="inline-block mb-6">
               <div className="flex items-center justify-center mx-auto">
-                <span>
-                  <img src={logo} alt='Logo' className="w-40 h-40 rounded-full object-cover" />
-                </span>
+                  <img src={logo} alt='Logo' className=" w-80 h-80" />
               </div>
             </div>
-            <h1 className="text-5xl md:text-7xl mb-4 tracking-tight">
+            {/* <h1 className="text-5xl md:text-7xl mb-4 tracking-tight">
               LS MASTER BUILDERS
-            </h1>
+            </h1> */}
             <p className="text-xl md:text-2xl mb-3 text-[#a3e635]">
               Architectural Designer
             </p>

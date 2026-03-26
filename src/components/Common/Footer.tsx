@@ -11,7 +11,7 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-3 mb-4">
+            {/* <div className="flex items-center space-x-3 mb-4">
               <div className="w-10 h-10 flex items-center justify-center">
                 <span>
                   <img 
@@ -22,7 +22,7 @@ function Footer() {
                 </span>
               </div>
               <span className="text-xl">LS MASTER BUILDERS</span>
-            </div>
+            </div> */}
             <p className="text-gray-400 mb-4">
               Professional Architectural Designer creating innovative spaces and structural solutions.
             </p>

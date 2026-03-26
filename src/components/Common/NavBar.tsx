@@ -25,7 +25,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 flex items-center justify-center">
+            {/* <div className="w-10 h-10 flex items-center justify-center">
               <span>
                 <img 
                   src={logo}
@@ -33,8 +33,8 @@ export default function Navbar() {
                   className='rounded-full object-cover'
                 />
               </span>
-            </div>
-            <span className="text-xl tracking-wide">LS MASTER BUILDERS</span>
+            </div> */}
+            {/* <span className="text-xl tracking-wide">LS MASTER BUILDERS</span> */}
           </Link>
 
           {/* Desktop Navigation */}
