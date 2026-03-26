@@ -74,7 +74,7 @@ function Footer() {
               </li>
               <li className="flex items-start space-x-3">
                 <Mail size={18} className="mt-1 text-[#a3e635] flex-shrink-0" />
-                <span className="text-gray-400 break-all">Lahiru.cadstoral@gmail.com</span>
+                <span className="text-gray-400 break-all">Lahirucadstore1@gmail.com</span>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="mt-1 text-[#a3e635] flex-shrink-0" />
@@ -92,6 +92,7 @@ function Footer() {
           <p className="text-gray-400">
             &copy; {currentYear} Lahiru Srimal. All rights reserved.
           </p>
+          <p>Develop by DEV09 Solutions</p>
         </div>
       </div>
     </footer>

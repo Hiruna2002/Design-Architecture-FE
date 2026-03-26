@@ -3,7 +3,8 @@ import { ArrowRight, Building2, Ruler, Hammer, Star } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import logo from '../assets/Design-Architecture-Logo.jpeg' 
 
 interface Project {
   _id: string;
@@ -51,35 +52,17 @@ function Home() {
 
   const getAllProjects = async() => {
     try{
-      const res = await axios.get('http://localhost:9000/api/projects')
+      const res = await axios.get('https://design-architecture-be.vercel.app/api/projects')
       setProjects(res.data);
     } catch (error) {
       console.error(error);
     }
   }
 
-  // const testimonials = [
-  //   {
-  //     name: 'Rajitha Fernando',
-  //     text: 'Exceptional architectural design! Lahiru transformed our vision into reality with perfect precision.',
-  //     rating: 5
-  //   },
-  //   {
-  //     name: 'Nimal Perera',
-  //     text: 'Professional service from start to finish. The 3D visualizations helped us make confident decisions.',
-  //     rating: 5
-  //   },
-  //   {
-  //     name: 'Chamari Silva',
-  //     text: 'Outstanding renovation design work. Highly recommended for anyone seeking quality architectural services.',
-  //     rating: 5
-  //   }
-  // ];
-
   const fetchFeedbacks = async () => {
     try {
       const res = await axios.get<Feedback[]>(
-        "http://localhost:9000/api/feedback"
+        "https://design-architecture-be.vercel.app/api/feedback"
       );
       setFeedbacks(res.data);
     } catch (err) {
@@ -113,8 +96,10 @@ function Home() {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block mb-6">
-              <div className="w-20 h-20 bg-[#a3e635] rotate-45 flex items-center justify-center mx-auto">
-                <span className="text-[#0f172a] -rotate-45 text-3xl">LS</span>
+              <div className="flex items-center justify-center mx-auto">
+                <span>
+                  <img src={logo} alt='Logo' className="w-40 h-40 rounded-full object-cover" />
+                </span>
               </div>
             </div>
             <h1 className="text-5xl md:text-7xl mb-4 tracking-tight">
@@ -250,7 +235,7 @@ function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {Array.isArray(projects) ? (
-              projects.map((project, index) => (
+              projects.slice(0, 3).map((project, index) => (
                 <motion.div
                 key={project._id}
                 onClick={() => handleProject(project._id)}

@@ -25,7 +25,7 @@ const FeedbackPage = () => {
   const fetchFeedbacks = async () => {
     try {
       const res = await axios.get<Feedback[]>(
-        "http://localhost:9000/api/feedback"
+        "https://design-architecture-be.vercel.app/api/feedback"
       );
       setFeedbacks(res.data);
     } catch (err) {
@@ -63,7 +63,7 @@ const FeedbackPage = () => {
     }
 
     try {
-      await axios.post("http://localhost:9000/api/feedback", {
+      await axios.post("https://design-architecture-be.vercel.app/api/feedback", {
         name: formData.name,
         message: formData.message,
         rating: formData.rating,

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import logo from '../../assets/Design-Architecture-Logo.jpeg'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,6 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    // { name: 'Services', path: '/services' },
     { name: 'Projects', path: '/projects' },
     { name: 'Process', path: '/process' },
     // { name: 'Our Group', path: '/team' },
@@ -25,8 +25,14 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-[#a3e635] rotate-45 flex items-center justify-center">
-              <span className="text-[#0f172a] -rotate-45 text-xl">LS</span>
+            <div className="w-10 h-10 flex items-center justify-center">
+              <span>
+                <img 
+                  src={logo}
+                  alt="Logo"
+                  className='rounded-full object-cover'
+                />
+              </span>
             </div>
             <span className="text-xl tracking-wide">LS MASTER BUILDERS</span>
           </Link>
