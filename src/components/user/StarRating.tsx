@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const StarRating = ({ rating, setRating }: any) => {
   return (
     <div className="flex gap-1 text-2xl cursor-pointer">
