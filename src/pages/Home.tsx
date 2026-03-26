@@ -3,9 +3,7 @@ import { ArrowRight, Building2, Ruler, Hammer, Star } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
-import StarRating from "../components/user/StarRating";
- 
+import { useNavigate } from "react-router-dom"; 
 
 interface Project {
   _id: string;
