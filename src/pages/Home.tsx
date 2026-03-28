@@ -4,7 +4,8 @@ import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import logo from '../assets/Design-Architecture-Logo.jpeg' 
+import logo from '../assets/111.png';
+import image from '../assets/bg.jpg';
 
 interface Project {
   _id: string;
@@ -35,23 +36,23 @@ function Home() {
 
   const navigate = useNavigate();
 
-  useEffect(()=> {
+  useEffect(() => {
     getAllProjects();
     getAllServices();
     fetchFeedbacks();
   }, []);
 
-  const getAllServices = async() => {
-    try{
+  const getAllServices = async () => {
+    try {
       const res = await axios.get('https://design-architecture-be.vercel.app/api/services')
       setServices(res.data);
-    } catch(error){
+    } catch (error) {
       console.error(error)
     }
   }
 
-  const getAllProjects = async() => {
-    try{
+  const getAllProjects = async () => {
+    try {
       const res = await axios.get('https://design-architecture-be.vercel.app/api/projects')
       setProjects(res.data);
     } catch (error) {
@@ -83,13 +84,16 @@ function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section
-        className="relative h-screen flex items-center justify-center bg-cover bg-center"
-        style={{
-          backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1695067440629-b5e513976100?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwYnVpbGRpbmclMjBleHRlcmlvcnxlbnwxfHx8fDE3NzEyMzkzMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080')`
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f172a]/50"></div>
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+        className="relative h-screen flex items-center md:items-start justify-center bg-cover bg-center">
+
+        <div className='absolute overflow-hidden w-full h-full'>
+          <img src={image} className='w-full -z-10' alt="" />
+        </div>
+
+        <div className='bg-[#03002e80] w-full h-full z-10 absolute'></div>
+
+        <div className="absolute z-20 inset-0 bg-gradient-to-b from-transparent to-[#0f172a]/50"></div>
+        <div className="relative z-30 text-center text-white px-4 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -97,7 +101,7 @@ function Home() {
           >
             <div className="inline-block mb-6">
               <div className="flex items-center justify-center mx-auto">
-                  <img src={logo} alt='Logo' className=" w-80 h-80" />
+                <img src={logo} alt='Logo' className=" w-80 h-80" />
               </div>
             </div>
             {/* <h1 className="text-5xl md:text-7xl mb-4 tracking-tight">
@@ -126,7 +130,7 @@ function Home() {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Decorative geometric shapes */}
         <div className="absolute top-20 left-10 w-20 h-20 border-4 border-[#a3e635]/30 rotate-45"></div>
         <div className="absolute bottom-40 right-20 w-16 h-16 border-4 border-[#a3e635]/20 rotate-12"></div>
@@ -225,25 +229,25 @@ function Home() {
             {Array.isArray(projects) ? (
               projects.slice(0, 3).map((project, index) => (
                 <motion.div
-                key={project._id}
-                onClick={() => handleProject(project._id)}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer"
-              >
-                <img
-                  src={project.imageUrl}
-                  alt={project.name}
-                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl">{project.name}</h3>
+                  key={project._id}
+                  onClick={() => handleProject(project._id)}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer"
+                >
+                  <img
+                    src={project.imageUrl}
+                    alt={project.name}
+                    className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h3 className="text-2xl">{project.name}</h3>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
               ))
             ) : (
               <p>No Projects Available</p>

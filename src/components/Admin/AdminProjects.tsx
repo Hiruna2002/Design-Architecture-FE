@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
+
 
 interface Project {
   _id: string;
@@ -27,9 +31,72 @@ const AdminProjects = () => {
     cost: ''
   });
 
+  const convertPdfToImages = async (file: File): Promise<File[]> => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.onload = async function() {
+        try {
+          const typedArray = new Uint8Array(this.result as ArrayBuffer);
+          const pdf = await pdfjsLib.getDocument({ data: typedArray }).promise;
+          const numPages = pdf.numPages;
+          const imageFiles: File[] = [];
+
+          for (let i = 1; i <= numPages; i++) {
+            const page = await pdf.getPage(i);
+            const viewport = page.getViewport({ scale: 1.5 });
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            if (!context) throw new Error('Could not get canvas context');
+            
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport,
+              canvas: canvas,
+            };
+            
+            await page.render(renderContext).promise;
+            
+            const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/jpeg', 0.9));
+            if (blob) {
+              const fileName = numPages > 1 ? file.name.replace('.pdf', `_page_${i}.jpg`) : file.name.replace('.pdf', '.jpg');
+              const imageFile = new File([blob], fileName, { type: 'image/jpeg' });
+              imageFiles.push(imageFile);
+            }
+          }
+          
+          resolve(imageFiles);
+        } catch (error) {
+          reject(error);
+        }
+      };
+      
+      fileReader.onerror = () => {
+        reject(new Error("Failed to read file"));
+      }
+
+      fileReader.readAsArrayBuffer(file);
+    });
+  };
+
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    let file = e.target.files?.[0];
     if (!file) return;
+
+    if (file.type === 'application/pdf') {
+      try {
+        const extractedImages = await convertPdfToImages(file);
+        if (extractedImages.length > 0) {
+          file = extractedImages[0]; // For main image, just use the first page
+        }
+      } catch (err) {
+        console.error("PDF to image conversion failed:", err);
+        alert("Failed to extract image from PDF");
+        return;
+      }
+    }
 
     const fd = new FormData();
     fd.append("image", file); 
@@ -56,7 +123,19 @@ const AdminProjects = () => {
     const fd = new FormData();
 
     for (let i = 0; i < files.length; i++) {
-      fd.append("images", files[i]); 
+      let file = files[i];
+      if (file.type === 'application/pdf') {
+        try {
+          const extractedImages = await convertPdfToImages(file);
+          extractedImages.forEach(img => fd.append("images", img));
+        } catch (err) {
+          console.error("PDF to image conversion failed:", err);
+          alert(`Failed to extract images from PDF: ${file.name}`);
+        }
+      } else {
+        // If it's a regular image file, use the previous method and append it directly
+        fd.append("images", file); 
+      }
     }
 
     try {
@@ -253,7 +332,7 @@ const AdminProjects = () => {
               <label className="block mb-2 text-white">Upload Photo</label>
               <input 
                 type="file" 
-                accept="image/*" 
+                accept="image/*,application/pdf" 
                 onChange={handleImageChange} 
                 className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-white" 
               />

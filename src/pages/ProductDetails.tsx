@@ -25,7 +25,7 @@ const ProductDetails = () => {
 
     const fetchProduct = async () => {
         try{
-            const res = await axios.get(`http://localhost:9000/api/projects/${id}`);
+            const res = await axios.get(`https://design-architecture-be.vercel.app/api/projects/${id}`);
             setProject(res.data);
             console.log("sub images is: ", res.data);
         } catch (error){
@@ -57,23 +57,21 @@ const ProductDetails = () => {
                     src={project?.imageUrl}
                     alt={project?.name}
                 />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div className="relative overflow-hidden h-64">
-                        {project?.subImageUrls.map((subImageUrl, idx) => (
-                            <div 
-                                key={idx} 
-                                className="group bg-white rounded-lg overflow-hidden mt-5 "
-                            >
-                                <div className="relative overflow-hidden h-64">
-                                    <img
-                                        src={subImageUrl}
-                                        alt={project.name}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                    {project?.subImageUrls?.map((subImageUrl, idx) => (
+                        <div 
+                            key={idx} 
+                            className="group bg-white rounded-lg overflow-hidden"
+                        >
+                            <div className="relative overflow-hidden h-64">
+                                <img
+                                    src={subImageUrl}
+                                    alt={project?.name}
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>
