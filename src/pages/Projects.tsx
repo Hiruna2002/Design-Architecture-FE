@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 interface Project{
-  id: string;
+  _id: string;
   name: string;
   description: string;
   imageUrl: string;
@@ -16,6 +17,8 @@ interface Project{
 export default function Projects() {
   // const [activeFilter, setActiveFilter] = useState('All');
   const [projects, setProjects] = useState<Project[]>([]);
+
+  const navigate = useNavigate();
 
   useEffect(()=>{
     getAllProjects();
@@ -30,75 +33,9 @@ export default function Projects() {
     }
   }
 
-  // const projects = [
-  //   {
-  //     id: 1,
-  //     title: 'Modern Villa Design',
-  //     category: 'Residential',
-  //     description: 'Contemporary luxury villa with open-concept living spaces and sustainable design features.',
-  //     image: 'https://images.unsplash.com/photo-1722421492323-eaf9c401befe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb250ZW1wb3JhcnklMjBob3VzZSUyMGRlc2lnbnxlbnwxfHx8fDE3NzEzMTc2MzN8MA&ixlib=rb-4.1.0&q=80&w=1080'
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Commercial Office Complex',
-  //     category: 'Commercial',
-  //     description: 'Multi-story office building with modern amenities and energy-efficient systems.',
-  //     image: 'https://images.unsplash.com/photo-1580741753044-b3f303ad361b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwYnVpbGRpbmclMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzcxMzIwNjg5fDA&ixlib=rb-4.1.0&q=80&w=1080'
-  //   },
-  //   {
-  //     id: 3,
-  //     title: 'Luxury Residential Estate',
-  //     category: 'Residential',
-  //     description: 'Exclusive residential property featuring premium finishes and landscaped gardens.',
-  //     image: 'https://images.unsplash.com/photo-1758448756880-01dbaf85597d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjByZXNpZGVudGlhbCUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzEyODkwOTF8MA&ixlib=rb-4.1.0&q=80&w=1080'
-  //   },
-  //   {
-  //     id: 4,
-  //     title: 'Urban Apartment Renovation',
-  //     category: 'Renovation',
-  //     description: 'Complete transformation of dated apartment into modern, functional living space.',
-  //     image: 'https://images.unsplash.com/photo-1758998202918-d921125a700f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBpbnRlcmlvciUyMHJlbm92YXRpb258ZW58MXx8fHwxNzcxMzQ3MDE1fDA&ixlib=rb-4.1.0&q=80&w=1080'
-  //   },
-  //   {
-  //     id: 5,
-  //     title: 'Contemporary Family Home',
-  //     category: 'Residential',
-  //     description: 'Family-oriented design with spacious interiors and outdoor entertainment areas.',
-  //     image: 'https://images.unsplash.com/photo-1695067440629-b5e513976100?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwYnVpbGRpbmclMjBleHRlcmlvcnxlbnwxfHx8fDE3NzEyMzkzMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080'
-  //   },
-  //   {
-  //     id: 6,
-  //     title: 'Retail Space Design',
-  //     category: 'Commercial',
-  //     description: 'Modern retail environment optimized for customer experience and brand identity.',
-  //     image: 'https://images.unsplash.com/photo-1580741753044-b3f303ad361b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwYnVpbGRpbmclMjBhcmNoaXRlY3R1cmV8ZW58MXx8fHwxNzcxMzIwNjg5fDA&ixlib=rb-4.1.0&q=80&w=1080'
-  //   },
-  //   {
-  //     id: 7,
-  //     title: 'Heritage Building Restoration',
-  //     category: 'Renovation',
-  //     description: 'Sensitive restoration preserving historical character while adding modern conveniences.',
-  //     image: 'https://images.unsplash.com/photo-1758998202918-d921125a700f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBpbnRlcmlvciUyMHJlbm92YXRpb258ZW58MXx8fHwxNzcxMzQ3MDE1fDA&ixlib=rb-4.1.0&q=80&w=1080'
-  //   },
-  //   {
-  //     id: 8,
-  //     title: 'Minimalist Urban Dwelling',
-  //     category: 'Residential',
-  //     description: 'Clean lines and efficient use of space in compact urban environment.',
-  //     image: 'https://images.unsplash.com/photo-1722421492323-eaf9c401befe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb250ZW1wb3JhcnklMjBob3VzZSUyMGRlc2lnbnxlbnwxfHx8fDE3NzEzMTc2MzN8MA&ixlib=rb-4.1.0&q=80&w=1080'
-  //   },
-  //   {
-  //     id: 9,
-  //     title: 'Corporate Headquarters',
-  //     category: 'Commercial',
-  //     description: 'Striking architectural statement for forward-thinking corporate client.',
-  //     image: 'https://images.unsplash.com/photo-1695067440629-b5e513976100?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwYnVpbGRpbmclMjBleHRlcmlvcnxlbnwxfHx8fDE3NzEyMzkzMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080'
-  //   }
-  // ];
-
-  // const filteredProjects = activeFilter === 'All' 
-  //   ? projects 
-  //   :  projects.filter(project => project.category === activeFilter);
+  const handleProject = (id: string) => {
+    navigate(`/projects/${id}`)
+  }
 
   return (
     <div className="min-h-screen">
@@ -149,10 +86,11 @@ export default function Projects() {
             {Array.isArray(projects) ? (
               projects.map((project, index) => (
                 <motion.div
-                key={project.id}
+                key={project._id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
+                onClick={() => handleProject(project._id)}
                 className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
               >
                 <div className="relative overflow-hidden h-64">

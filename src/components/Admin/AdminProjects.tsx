@@ -327,6 +327,13 @@ const AdminProjects = () => {
               onChange={(e) => setFormData({ ...formData, cost: e.target.value })} 
               className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" 
             />
+            {/* <input 
+              type="number" 
+              placeholder="Bedrooms" 
+              value={formData.bedrooms} 
+              onChange={(e) => setFormData({ ...formData, bedrooms: e.target.value })} 
+              className="w-[288px] ml-5 mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white" 
+            /> */}
 
             <div className="mb-4">
               <label className="block mb-2 text-white">Upload Photo</label>
