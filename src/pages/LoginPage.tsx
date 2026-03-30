@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { LogIn, Mail, Lock } from 'lucide-react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function Login () {
   const [email, setEmail] = useState('');
@@ -20,6 +21,12 @@ export default function Login () {
         email, password
       });
 
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successfull!',
+        confirmButtonColor: '#a3e635',
+      });
+
       localStorage.setItem("token", res.data.token);
 
       if(res.data.user.role === "admin" || res.data.user.role === "Admin" || res.data.user.role === "ADMIN"){
@@ -29,6 +36,12 @@ export default function Login () {
       }
     } catch (error: any) {
       console.log(error.response?.data);
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong',
+        text: 'Login Unsuccessfull!',
+        confirmButtonColor: '#a3e635',
+      });
     }
   };
 
