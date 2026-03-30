@@ -12,9 +12,18 @@ interface Feedback {
   createdAt?: string;
 }
 
+interface User {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  role: string;
+}
+
 const FeedbackPage = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>( null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -44,6 +53,7 @@ const FeedbackPage = () => {
   }, [feedbacks]);
 
   const openModal = () => {
+
     setFormData({
       name: "",
       message: "",
@@ -57,6 +67,11 @@ const FeedbackPage = () => {
   };
 
   const handleSubmit = async () => {
+    const loggedIn = await checkAuth();
+    if(!loggedIn || !currentUser){
+      alert("You must login to submit feedback!");
+      return;
+    }
     if (!formData.rating) {
       alert("Please select rating");
       return;
@@ -64,7 +79,7 @@ const FeedbackPage = () => {
 
     try {
       await axios.post("https://design-architecture-be.vercel.app/api/feedback", {
-        name: formData.name,
+        name: currentUser.name || '',
         message: formData.message,
         rating: formData.rating,
       });
@@ -81,7 +96,31 @@ const FeedbackPage = () => {
       console.error("Error submitting feedback:", err);
       alert("Failed to submit feedback");
     }
-  };
+  }
+
+  const checkAuth = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        console.log("token is: ", token)
+  
+        const res = await axios.get(
+          "http://localhost:9000/api/users/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+  
+        console.log("User logged in:", res.data);
+        setCurrentUser(res.data);
+        return true;
+  
+      } catch (err) {
+        console.log("Not logged in");
+        return false;
+      }
+    }
 
   return (
     <div className="p-6 text-white">
@@ -144,7 +183,7 @@ const FeedbackPage = () => {
           <div className="bg-slate-800 p-6 rounded w-full max-w-md border border-slate-700">
             <h3 className="text-xl mb-4 font-semibold">Give Feedback</h3>
 
-            <input
+            {/* <input
               type="text"
               placeholder="Your Name"
               value={formData.name}
@@ -152,7 +191,7 @@ const FeedbackPage = () => {
                 setFormData({ ...formData, name: e.target.value })
               }
               className="w-full mb-3 p-2 bg-slate-700 text-white rounded border border-slate-600 outline-none"
-            />
+            /> */}
 
             <textarea
               placeholder="Your Feedback"

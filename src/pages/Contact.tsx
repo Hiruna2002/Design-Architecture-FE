@@ -2,12 +2,23 @@ import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 import emailjs from "@emailjs/browser";
+import axios from 'axios';
+
+interface User {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  role: string;
+}
 
 export default function Contact() {
 
   useEffect(()=> {
       emailjs.init("jZQU_K7Z5Jj3iM9vZ");
     }, []);
+
+  
 
   const [formData, setFormData] = useState({
     name: '',
@@ -17,6 +28,7 @@ export default function Contact() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -26,6 +38,12 @@ export default function Contact() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const loggedIn = await checkAuth();
+    
+    if(!loggedIn || !currentUser){
+      alert("Please log first");
+      return;
+    }
     const form = e.currentTarget;
 
     e.preventDefault();
@@ -33,7 +51,12 @@ export default function Contact() {
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ 
+        name: currentUser?.name || '', 
+        email: currentUser?.email || '', 
+        subject: '', 
+        message: '' 
+      });
     }, 3000);
 
     try {
@@ -52,6 +75,30 @@ export default function Contact() {
       console.error("❌ Failed to send email:", error);
     }
   };
+
+  const checkAuth = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        console.log("token is: ", token)
+  
+        const res = await axios.get(
+          "http://localhost:9000/api/users/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+  
+        console.log("User logged in:", res.data);
+        setCurrentUser(res.data);
+        return true;
+  
+      } catch (err) {
+        console.log("Not logged in");
+        return false;
+      }
+    }
 
   return (
     <div className="min-h-screen">
@@ -190,7 +237,7 @@ export default function Contact() {
                 ) : (
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
+                  {/* <div>
                     <label htmlFor="name" className="block mb-2 text-gray-700">
                       Full Name *
                     </label>
@@ -220,7 +267,7 @@ export default function Contact() {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a3e635] bg-white"
                       placeholder="your@email.com"
                     />
-                  </div>
+                  </div> */}
 
                   <div>
                     <label htmlFor="subject" className="block mb-2 text-gray-700">
