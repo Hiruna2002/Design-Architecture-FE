@@ -40,6 +40,7 @@ function Home() {
     getAllProjects();
     getAllServices();
     fetchFeedbacks();
+    checkAuth();
   }, []);
 
   const getAllServices = async () => {
@@ -78,6 +79,29 @@ function Home() {
 
   const handleProject = (id: string) => {
     navigate(`/projects/${id}`)
+  }
+
+  const checkAuth = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log("token is: ", token)
+
+      const res = await axios.get(
+        "https://design-architecture-be.vercel.app/api/users/profile",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("User logged in:", res.data);
+      return true;
+
+    } catch (err) {
+      console.log("Not logged in");
+      return false;
+    }
   }
 
   return (

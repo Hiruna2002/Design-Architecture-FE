@@ -5,7 +5,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { LogIn, Mail, Lock } from 'lucide-react';
-import { toast } from 'sonner';
 import axios from 'axios';
 
 export default function Login () {
@@ -17,18 +16,19 @@ export default function Login () {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://design-architecture-be.vercel.app/api/users", {
+      const res = await axios.post("https://design-architecture-be.vercel.app/api/users/login", {
         email, password
       });
 
-      if(res.data.success){
-        toast.success('Successfully logged in!');
+      localStorage.setItem("token", res.data.token);
+
+      if(res.data.user.role === "admin" || res.data.user.role === "Admin" || res.data.user.role === "ADMIN"){
         navigate('/admin');
       } else {
-        toast.success('User name or password invalid')
+        navigate('/');
       }
     } catch (error: any) {
-      toast.error(error.message || 'Failed to sign in');
+      console.log(error.response?.data);
     }
   };
 

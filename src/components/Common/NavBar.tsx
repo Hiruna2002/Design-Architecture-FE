@@ -62,11 +62,11 @@ export default function Navbar() {
                 Login
               </Link>
             </button>
-            {/* <button className="px-4 py-2 bg-[#a3e635] text-[#0f172a] rounded-md hover:bg-[#86d91c] transition-colors">
+            <button className="px-4 py-2 bg-[#a3e635] text-[#0f172a] rounded-md hover:bg-[#86d91c] transition-colors">
               <Link to='/signup'>
                 SignUp
               </Link>
-            </button> */}
+            </button>
           </div>
 
           {/* Mobile menu button */}

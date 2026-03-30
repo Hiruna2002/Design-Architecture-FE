@@ -38,11 +38,20 @@ export const SignUp: React.FC = () => {
     }
 
     try {
-      const res = await axios.post("https://design-architecture-be.vercel.app/api/users", formData);
-      console.log(res);
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password, 
+        role: "user"
+      };
+
+      const res = await axios.post("https://design-architecture-be.vercel.app/api/users", payload);
+      console.log("Response from server:", res.data);
       navigate('/');
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      // console.error(error);
+      console.log(error.response?.data);
     }
   };
 
