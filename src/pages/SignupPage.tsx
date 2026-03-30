@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
-// import { useAuth } from '../context/AuthContext';
 import { UserPlus, Mail, Lock, User, Phone } from 'lucide-react';
 // import { toast } from 'sonner';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export const SignUp: React.FC = () => {
   const navigate = useNavigate();
@@ -28,12 +28,21 @@ export const SignUp: React.FC = () => {
     e.preventDefault(); 
 
     if (formData.password !== formData.confirmPassword) {
-      console.error("Password and Confirm Password mismatch");
+      Swal.fire({
+        icon: 'error',
+        text: 'Password and Confirm Password mismatch',
+        confirmButtonColor: '#a3e635',
+      });
       return;
     }
 
     if (formData.password.length < 6) {
       console.error("Password should be at least 6 characters");
+      Swal.fire({
+        icon: 'error',
+        text: 'Password should be at least 6 characters',
+        confirmButtonColor: '#a3e635',
+      });
       return;
     }
 
@@ -48,10 +57,20 @@ export const SignUp: React.FC = () => {
 
       const res = await axios.post("https://design-architecture-be.vercel.app/api/users", payload);
       console.log("Response from server:", res.data);
+      Swal.fire({
+        icon: 'success',
+        title: 'Successfully!',
+        text: 'Account create successfully!',
+        confirmButtonColor: '#a3e635',
+      });
       navigate('/');
     } catch (error: any) {
-      // console.error(error);
       console.log(error.response?.data);
+      Swal.fire({
+        icon: 'error',
+        text: 'Account not create!',
+        confirmButtonColor: '#a3e635',
+      });
     }
   };
 
