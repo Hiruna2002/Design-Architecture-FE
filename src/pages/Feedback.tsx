@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import StarRating from "../components/user/StarRating";
+import Swal from 'sweetalert2';
 
 interface Feedback {
   _id: string;
@@ -38,7 +39,11 @@ const FeedbackPage = () => {
       );
       setFeedbacks(res.data);
     } catch (err) {
-      console.error("Error fetching feedbacks:", err);
+      Swal.fire({
+        icon: 'error',
+        text: 'Failed to fetch feedback!',
+        confirmButtonColor: '#a3e635',
+      });;
     }
   };
 
@@ -69,11 +74,21 @@ const FeedbackPage = () => {
   const handleSubmit = async () => {
     const loggedIn = await checkAuth();
     if(!loggedIn || !currentUser){
-      alert("You must login to submit feedback!");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Login Required',
+        text: 'You must login to submit feedback!',
+        confirmButtonColor: '#a3e635',
+      });
       return;
     }
     if (!formData.rating) {
-      alert("Please select rating");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Rating Required',
+        text: 'You must select rating to submit feedback!',
+        confirmButtonColor: '#a3e635',
+      });
       return;
     }
 
@@ -84,7 +99,13 @@ const FeedbackPage = () => {
         rating: formData.rating,
       });
 
-      alert("Feedback submitted ❤️");
+      Swal.fire({
+        icon: 'success',
+        title: 'Feedback Submitted!',
+        text: 'Thank you for your feedback ❤️',
+        confirmButtonColor: '#a3e635',
+      });
+
       setFormData({
         name: "",
         message: "",
@@ -93,8 +114,11 @@ const FeedbackPage = () => {
       closeModal();
       fetchFeedbacks();
     } catch (err) {
-      console.error("Error submitting feedback:", err);
-      alert("Failed to submit feedback");
+      Swal.fire({
+        icon: 'error',
+        text: 'Failed to submit feedback!',
+        confirmButtonColor: '#a3e635',
+      });
     }
   }
 
