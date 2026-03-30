@@ -43,7 +43,7 @@ const FeedbackPage = () => {
         icon: 'error',
         text: 'Failed to fetch feedback!',
         confirmButtonColor: '#a3e635',
-      });;
+      });
     }
   };
 

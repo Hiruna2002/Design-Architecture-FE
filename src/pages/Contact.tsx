@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 import emailjs from "@emailjs/browser";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 interface User {
   name: string;
@@ -41,7 +42,12 @@ export default function Contact() {
     const loggedIn = await checkAuth();
     
     if(!loggedIn || !currentUser){
-      alert("Please log first");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Login Required',
+        text: 'You must login to submit feedback!',
+        confirmButtonColor: '#a3e635',
+      });
       return;
     }
     const form = e.currentTarget;
@@ -68,11 +74,22 @@ export default function Contact() {
       );
 
       console.log("✅ Email sent successfully!", response);
+
+      Swal.fire({
+        icon: 'success',
+        title: '✅ Email sent successfully!',
+        text: 'Thank you for choosing us ❤️',
+        confirmButtonColor: '#a3e635',
+      });
       setIsSubmitted(true)
 
       form.reset();
     } catch (error) {
-      console.error("❌ Failed to send email:", error);
+      Swal.fire({
+        icon: 'error',
+        text: '❌ Failed to send email!',
+        confirmButtonColor: '#a3e635',
+      });
     }
   };
 
