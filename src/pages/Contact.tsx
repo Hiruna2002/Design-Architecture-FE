@@ -436,7 +436,7 @@ export default function Contact() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  // const [setCurrentUser] = useState<User | null>(null);
 
   // EmailJS init
   useEffect(() => {
@@ -464,7 +464,7 @@ export default function Contact() {
         }
       );
 
-      setCurrentUser(res.data);
+      // setCurrentUser(res.data);
       return res.data;
     } catch (err) {
       return null;
