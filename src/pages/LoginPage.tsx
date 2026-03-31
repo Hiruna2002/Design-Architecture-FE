@@ -3,7 +3,7 @@
 
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { LogIn, Mail, Lock } from 'lucide-react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -120,9 +120,9 @@ export default function Login({ setIsLoggedIn }: LoginProps) {
 
           {/* Remember + Forgot */}
           {/* <div className="flex items-center justify-between text-sm">
-            <a href="#" className="text-[#86d91c] font-medium hover:underline">
+            <Link to="/forgot-password" className="text-[#86d91c] font-medium hover:underline">
               Forgot password?
-            </a>
+            </Link>
           </div> */}
 
           {/* Button */}

@@ -16,7 +16,7 @@ interface User {
 export default function Contact() {
 
   useEffect(()=> {
-      emailjs.init("jZQU_K7Z5Jj3iM9vZ");
+      emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
     }, []);
 
   
@@ -67,10 +67,10 @@ export default function Contact() {
 
     try {
       const response = await emailjs.send(
-        "service_4jhbtbl",
-        "template_yew9n6a",
+        import.meta.env.VITE_EMAILJS_SERVICE_KEY,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         formData,
-        "jZQU_K7Z5Jj3iM9vZ"
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       console.log("✅ Email sent successfully!", response);
