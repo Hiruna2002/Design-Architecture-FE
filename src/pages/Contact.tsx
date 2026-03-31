@@ -419,14 +419,6 @@ import emailjs from "@emailjs/browser";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-interface User {
-  name: string;
-  email: string;
-  phone: string;
-  password: string;
-  role: string;
-}
-
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
