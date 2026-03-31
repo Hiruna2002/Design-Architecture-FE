@@ -18,21 +18,27 @@ import AdminTeam from './components/Admin/AdminTeam';
 import AdminUsers from './components/Admin/AdminUsers'; 
 import Dashboard from './components/Admin/Dashboard'
 import AdminServices from './components/Admin/AdminServices'
+import { useState } from 'react'
 
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem("token"));
   return (
       <>
       <Routes>
-        <Route path='/' element={<UserLayout />}>
+        {/* <Route path='/' element={<UserLayout />}> */}
+        <Route 
+          path='/' 
+          element={<UserLayout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+        >
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/process" element={<ProcessPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/signup" element={<SignUp setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/team" element={<Team />} />
           <Route path="/services/:id" element={<ServicePage />} />
           <Route path="/projects/:id" element={<ProductDetails />} />

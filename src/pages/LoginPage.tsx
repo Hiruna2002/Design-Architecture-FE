@@ -8,7 +8,12 @@ import { LogIn, Mail, Lock } from 'lucide-react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-export default function Login () {
+interface LoginProps {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Login({ setIsLoggedIn }: LoginProps) {
+// export default function Login () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -21,6 +26,8 @@ export default function Login () {
         email, password
       });
 
+      console.log("res.data is: ",res.data);
+
       Swal.fire({
         icon: 'success',
         title: 'Login Successfull!',
@@ -29,6 +36,8 @@ export default function Login () {
 
       localStorage.setItem("token", res.data.token);
 
+      setIsLoggedIn(true);
+
       if(res.data.user.role === "admin" || res.data.user.role === "Admin" || res.data.user.role === "ADMIN"){
         navigate('/admin');
       } else {
@@ -36,6 +45,7 @@ export default function Login () {
       }
     } catch (error: any) {
       console.log(error.response?.data);
+      console.error(error);
       Swal.fire({
         icon: 'error',
         title: 'Something went wrong',

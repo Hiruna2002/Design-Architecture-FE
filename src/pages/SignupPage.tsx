@@ -6,7 +6,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-export const SignUp: React.FC = () => {
+interface SignUpProps {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+
+export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => { 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -51,26 +56,33 @@ export const SignUp: React.FC = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        password: formData.password, 
-        role: "user"
+        password: formData.password
       };
 
       const res = await axios.post("https://design-architecture-be.vercel.app/api/users", payload);
       console.log("Response from server:", res.data);
+
       Swal.fire({
         icon: 'success',
         title: 'Successfully!',
         text: 'Account create successfully!',
         confirmButtonColor: '#a3e635',
       });
+
+      localStorage.setItem("token", res.data.token);
+
+      setIsLoggedIn(true)
+
       navigate('/');
     } catch (error: any) {
-      console.log(error.response?.data);
+      console.log("FULL ERROR:", error);
+      console.log("SERVER ERROR:", error.response?.data);
+
       Swal.fire({
         icon: 'error',
-        text: 'Account not create!',
+        text: error.response?.data?.message || 'Account not create!',
         confirmButtonColor: '#a3e635',
-      });
+  });
     }
   };
 

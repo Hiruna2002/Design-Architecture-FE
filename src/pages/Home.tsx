@@ -37,7 +37,6 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.removeItem("token");
     getAllProjects();
     getAllServices();
     fetchFeedbacks();
