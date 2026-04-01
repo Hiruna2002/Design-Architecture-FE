@@ -22,10 +22,10 @@ function Footer() {
               </div>
               <span className="text-xl">LS MASTER BUILDERS</span>
             </div> */}
-            <p className="text-gray-400 mb-4">
+            <p className="text-gray-400 mb-4 xl:text-xl">
               Professional Architectural Designer creating innovative spaces and structural solutions.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 xl:space-x-6 xl:w-20 xl:h-20">
               <a href="#" className="text-gray-400 hover:text-[#a3e635] transition-colors">
                 <Facebook size={20} />
               </a>
@@ -40,30 +40,30 @@ function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg mb-4 text-[#a3e635]">Quick Links</h3>
+            <h3 className="text-lg mb-4 text-[#a3e635] xl:text-2xl">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-[#a3e635] transition-colors">
+                <Link to="/" className="text-gray-400 hover:text-[#a3e635] transition-colors xl:text-2xl">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-400 hover:text-[#a3e635] transition-colors">
+                <Link to="/about" className="text-gray-400 hover:text-[#a3e635] transition-colors xl:text-2xl">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-[#a3e635] transition-colors">
+                <Link to="/services" className="text-gray-400 hover:text-[#a3e635] transition-colors xl:text-2xl">
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/projects" className="text-gray-400 hover:text-[#a3e635] transition-colors">
+                <Link to="/projects" className="text-gray-400 hover:text-[#a3e635] transition-colors xl:text-2xl">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-[#a3e635] transition-colors">
+                <Link to="/contact" className="text-gray-400 hover:text-[#a3e635] transition-colors xl:text-2xl">
                   Contact
                 </Link>
               </li>
@@ -72,19 +72,19 @@ function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg mb-4 text-[#a3e635]">Contact Information</h3>
+            <h3 className="text-lg mb-4 text-[#a3e635] xl:text-2xl">Contact Information</h3>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <Phone size={18} className="mt-1 text-[#a3e635] flex-shrink-0" />
-                <span className="text-gray-400">0761 380 569</span>
+                <span className="text-gray-400 xl:text-2xl">0761 380 569</span>
               </li>
               <li className="flex items-start space-x-3">
                 <Mail size={18} className="mt-1 text-[#a3e635] flex-shrink-0" />
-                <span className="text-gray-400 break-all">Lahirucadstore1@gmail.com</span>
+                <span className="text-gray-400 break-all xl:text-2xl">lahirucadstore1@gmail.com</span>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="mt-1 text-[#a3e635] flex-shrink-0" />
-                <span className="text-gray-400">
+                <span className="text-gray-400 xl:text-2xl">
                   No 67/H/1, Samagi Mawatha,<br />
                   Kuludewala, Panadura
                 </span>
@@ -95,7 +95,7 @@ function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-[#334155] mt-8 pt-8 text-center">
-          <p className="text-gray-400">
+          <p className="text-gray-400 xl:text-2xl">
             &copy; {currentYear} Lahiru Srimal. All rights reserved.
           </p>
           <p>
@@ -103,6 +103,7 @@ function Footer() {
               href='https://www.dev09solutions.com/' 
               target="_blank" 
               rel="noopener noreferrer"
+              className='xl:text-2xl'
             >
               Develop by DEV09 Solutions
             </a>

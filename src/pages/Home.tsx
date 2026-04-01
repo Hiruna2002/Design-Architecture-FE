@@ -140,14 +140,14 @@ function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center xl:w-[500px] mx-auto">
               <Link
                 to="/projects"
-                className="bg-[#a3e635] text-[#0f172a] px-8 py-4 rounded hover:bg-[#bef264] transition-all duration-300 inline-flex items-center justify-center group"
+                className="bg-[#a3e635] text-[#0f172a] px-8 py-4 rounded hover:bg-[#bef264] transition-all duration-300 inline-flex items-center justify-center group xl:text-2xl"
               >
                 View Projects
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </Link>
               <Link
                 to="/contact"
-                className="bg-transparent border-2 border-[#a3e635] text-[#a3e635] px-8 py-4 rounded hover:bg-[#a3e635] hover:text-[#0f172a] transition-all duration-300 inline-flex items-center justify-center"
+                className="bg-transparent border-2 border-[#a3e635] text-[#a3e635] px-8 py-4 rounded hover:bg-[#a3e635] hover:text-[#0f172a] transition-all duration-300 inline-flex items-center justify-center xl:text-2xl"
               >
                 Get a Quote
               </Link>

@@ -312,13 +312,13 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }: NavbarProps) {
   };
 
   return (
-    <nav className="bg-[#0f172a] text-white sticky top-0 z-50 shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-[#0f172a] text-white sticky top-0 z-50 shadow-lg xl:px-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="flex justify-between items-center h-20">
           <div></div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1 xl:text-3xl">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -341,10 +341,10 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }: NavbarProps) {
           <div className="hidden md:flex items-center gap-2">
             {!isLoggedIn ? (
               <>
-                <Link to="/login" className="px-4 py-2 bg-[#a3e635] text-[#0f172a] rounded-md">
+                <Link to="/login" className="px-4 py-2 bg-[#a3e635] text-[#0f172a] rounded-md xl:text-3xl">
                   Login
                 </Link>
-                <Link to="/signup" className="px-4 py-2 bg-[#a3e635] text-[#0f172a] rounded-md">
+                <Link to="/signup" className="px-4 py-2 bg-[#a3e635] text-[#0f172a] rounded-md xl:text-3xl">
                   SignUp
                 </Link>
               </>
