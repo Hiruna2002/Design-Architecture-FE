@@ -1,6 +1,6 @@
 const StarRating = ({ rating, setRating }: any) => {
   return (
-    <div className="flex gap-1 text-2xl cursor-pointer">
+    <div className="flex gap-1 text-2xl cursor-pointer xl:text-4xl">
       {[1, 2, 3, 4, 5].map((star) => (
         <span
           key={star}

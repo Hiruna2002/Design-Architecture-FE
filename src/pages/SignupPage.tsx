@@ -87,7 +87,7 @@ export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => {
   };
 
   return (
-  <div className="min-h-screen bg-[#0f172a] relative flex items-center justify-center px-4 overflow-hidden">
+  <div className="min-h-screen bg-[#0f172a] flex items-center justify-center px-3 overflow-hidden">
 
     {/* Background Accent Glow */}
     <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#86d91c] opacity-20 rounded-full blur-3xl"></div>
@@ -96,14 +96,15 @@ export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => {
     <div className="max-w-md w-full relative z-10">
 
       {/* Logo/Header */}
-      <div className="text-center mb-10">
+      <div className="text-center mt-10 mb-10">
         <div className="inline-flex items-center justify-center w-20 h-20 bg-[#86d91c] rounded-2xl shadow-xl mb-6">
           <UserPlus className="w-9 h-9 text-[#0f172a]" />
         </div>
-        <h2 className="text-4xl font-extrabold text-white tracking-tight">
+        <h2 className="text-4xl xl:text-6xl font-extrabold text-white tracking-tight">
           Create Account
+
         </h2>
-        <p className="mt-2 text-gray-400 text-sm">
+        <p className="mt-2 text-gray-400 text-sm xl:text-2xl">
           Join us today
         </p>
       </div>
@@ -115,7 +116,7 @@ export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => {
 
           {/* Name */}
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">
+            <label className="block text-sm font-semibold text-gray-300 mb-2 xl:text-2xl">
               Full Name *
             </label>
             <div className="relative group">
@@ -135,7 +136,7 @@ export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => {
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">
+            <label className="block text-sm font-semibold text-gray-300 mb-2 xl:text-2xl">
               Email Address *
             </label>
             <div className="relative group">
@@ -155,7 +156,7 @@ export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => {
 
           {/* Phone */}
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">
+            <label className="block text-sm font-semibold text-gray-300 mb-2 xl:text-2xl">
               Phone Number *
             </label>
             <div className="relative group">
@@ -175,7 +176,7 @@ export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => {
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">
+            <label className="block text-sm font-semibold text-gray-300 mb-2 xl:text-2xl">
               Password *
             </label>
             <div className="relative group">
@@ -195,7 +196,7 @@ export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => {
 
           {/* Confirm Password */}
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">
+            <label className="block text-sm font-semibold text-gray-300 mb-2 xl:text-2xl">
               Confirm Password *
             </label>
             <div className="relative group">
@@ -216,7 +217,7 @@ export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => {
           {/* Button */}
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-[#86d91c] text-[#0f172a] font-bold shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50"
+            className="w-full py-3 rounded-xl bg-[#86d91c] text-[#0f172a] font-bold shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 xl:text-2xl"
           >            
               Create Account
           </button>
@@ -224,21 +225,21 @@ export const SignUp: React.FC<SignUpProps> = ({ setIsLoggedIn }) => {
 
         {/* Divider */}
         <div className="mt-8 text-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-400 text-sm xl:text-2xl">
             Already have an account?
           </p>
 
           <Link
             to="/login"
-            className="mt-3 inline-block w-full py-3 rounded-xl border border-[#86d91c] text-[#86d91c] font-semibold hover:bg-[#86d91c] hover:text-[#0f172a] transition-all duration-300"
+            className="mt-3 inline-block w-full py-3 rounded-xl border border-[#86d91c] text-[#86d91c] font-semibold hover:bg-[#86d91c] hover:text-[#0f172a] transition-all duration-300 xl:text-2xl"
           >
             Sign In Instead
           </Link>
         </div>
       </div>
 
-      <p className="mt-8 text-center text-sm text-gray-500">
-        <Link to="/" className="hover:text-[#86d91c] transition">
+      <p className="mt-8 mb-8 text-center text-sm text-gray-500">
+        <Link to="/" className="hover:text-[#86d91c] transition xl:text-2xl">
           ← Back to Home
         </Link>
       </p>

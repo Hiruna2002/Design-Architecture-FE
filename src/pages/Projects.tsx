@@ -48,9 +48,9 @@ export default function Projects() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl mb-4">Our Projects</h1>
-            <div className="w-24 h-1 bg-[#a3e635] mx-auto mb-6"></div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <h1 className="text-5xl  md:text-6xl mb-4 xl:text-6xl">Our Projects</h1>
+            <div className="w-24 h-1 xl:w-48 xl:h-2 bg-[#a3e635] mx-auto mb-6"></div>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto xl:text-2xl">
               Explore our portfolio of completed projects showcasing innovative design solutions
               across residential, commercial, and renovation sectors.
             </p>
@@ -82,7 +82,7 @@ export default function Projects() {
       {/* Projects Grid */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
             {Array.isArray(projects) ? (
               projects.map((project, index) => (
                 <motion.div
@@ -93,7 +93,7 @@ export default function Projects() {
                 onClick={() => handleProject(project._id)}
                 className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
               >
-                <div className="relative overflow-hidden h-64">
+                <div className="relative overflow-hidden h-64 xl:h-[350px]">
                   <img
                     src={project.imageUrl}
                     alt={project.name}
@@ -102,8 +102,8 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                       {/* <p className="text-sm text-[#a3e635] mb-2">{project.category}</p> */}
-                      <h3 className="text-xl mb-2">{project.name}</h3>
-                      <p className="text-sm text-gray-300">{project.description}</p>
+                      <h3 className="text-xl mb-2 xl:text-2xl">{project.name}</h3>
+                      <p className="text-sm text-gray-300 xl:text-xl">{project.description}</p>
                     </div>
                   </div>
                 </div>
@@ -111,8 +111,8 @@ export default function Projects() {
                   {/* <span className="inline-block px-3 py-1 text-xs bg-[#a3e635]/10 text-[#0f172a] rounded-full mb-3">
                     {project.category}
                   </span> */}
-                  <h3 className="text-xl mb-2">{project.name}</h3>
-                  <p className="text-gray-600 text-sm">{project.description}</p>
+                  <h3 className="text-xl mb-2 xl:text-2xl">{project.name}</h3>
+                  <p className="text-gray-600 text-sm xl:text-xl">{project.description}</p>
                 </div>
               </motion.div>
               ))
@@ -131,15 +131,15 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl mb-6">Start Your Next Project</h2>
-            <div className="w-24 h-1 bg-[#a3e635] mx-auto mb-8"></div>
-            <p className="text-xl text-gray-300 mb-8">
+            <h2 className="text-4xl mb-6 xl:text-5xl">Start Your Next Project</h2>
+            <div className="w-24 h-1 xl:w-48 xl:h-2 bg-[#a3e635] mx-auto mb-8"></div>
+            <p className="text-xl text-gray-300 mb-8 xl:text-2xl">
               Ready to transform your architectural vision into reality? 
               Let's discuss your project requirements.
             </p>
             <a
               href="/contact"
-              className="inline-block bg-[#a3e635] text-[#0f172a] px-8 py-4 rounded hover:bg-[#bef264] transition-all duration-300"
+              className="inline-block bg-[#a3e635] text-[#0f172a] px-8 py-4 rounded hover:bg-[#bef264] transition-all duration-300 xl:text-xl"
             >
               Contact Us Today
             </a>

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import StarRating from "../components/user/StarRating";
 import Swal from 'sweetalert2';
+import { motion } from "motion/react";
 
 interface Feedback {
   _id: string;
@@ -147,111 +148,126 @@ const FeedbackPage = () => {
     }
 
   return (
-    <div className="p-6 text-white">
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h2 className="text-3xl font-bold">Feedbacks</h2>
-          <p className="text-gray-400 mt-1">
-            Average Rating: {averageRating.toFixed(1)} / 5
-          </p>
+    <div className="min-h-screen">
+      <section className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h1 className="text-5xl md:text-6xl xl:text-6xl mb-4">Feedbacks</h1>
+            <div className="w-24 h-1 xl:w-40 xl:h-2 bg-[#a3e635] mx-auto mb-6"></div>
+          </motion.div>
+        </div>
+     </section>
+      <div className="p-6 text-white">
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <h2 className="text-3xl font-bold xl:text-4xl">Feedbacks</h2>
+            <p className="text-gray-400 mt-1 xl:text-2xl">
+              Average Rating: {averageRating.toFixed(1)} / 5
+            </p>
+          </div>
+
+          <button
+            onClick={openModal}
+            className="bg-lime-400 text-slate-900 px-4 py-2 rounded hover:bg-lime-500 font-medium xl:text-2xl"
+          >
+            Add Feedback
+          </button>
         </div>
 
-        <button
-          onClick={openModal}
-          className="bg-lime-400 text-slate-900 px-4 py-2 rounded hover:bg-lime-500 font-medium"
-        >
-          Add Feedback
-        </button>
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {feedbacks.length === 0 ? (
+              <div className="bg-slate-800 border border-slate-700 rounded p-4 text-gray-400 xl:text-2xl">
+                No feedback yet
+              </div>
+              ) : (
+                feedbacks.map((f) => (
+                  <div
+                    key={f._id}
+                    className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#a3e635] xl:text-2xl"
+                  >
+                    <div className="flex items-center justify-between gap-4 xl:gap-8">
+                      <div>
+                        <p className="font-semibold text-black xl:text-2xl">
+                          {f.name || "Anonymous"}
+                        </p>
+                        <p className="text-sm text-gray-400 xl:text-2xl">
+                          {f.createdAt
+                            ? new Date(f.createdAt).toLocaleDateString()
+                            : ""}
+                        </p>
+                      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {feedbacks.length === 0 ? (
-            <div className="bg-slate-800 border border-slate-700 rounded p-4 text-gray-400">
-              No feedback yet
-            </div>
-            ) : (
-              feedbacks.map((f) => (
-                <div
-                  key={f._id}
-                  className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#a3e635]"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="font-semibold text-black">
-                        {f.name || "Anonymous"}
-                      </p>
-                      <p className="text-sm text-gray-400">
-                        {f.createdAt
-                          ? new Date(f.createdAt).toLocaleDateString()
-                          : ""}
-                      </p>
+                      <div className="text-yellow-400 text-lg">
+                        {"★".repeat(f.rating)}
+                        {"☆".repeat(5 - f.rating)}
+                      </div>
                     </div>
 
-                    <div className="text-yellow-400 text-lg">
-                      {"★".repeat(f.rating)}
-                      {"☆".repeat(5 - f.rating)}
-                    </div>
+                    <p className="mt-3 text-gray-600 mb-4 italic xl:text-2xl">"{f.message}"</p>
                   </div>
+                ))
+              )}
+          
+        </div>
 
-                  <p className="mt-3 text-gray-600 mb-4 italic">"{f.message}"</p>
-                </div>
-              ))
-            )}
         
-      </div>
 
-      
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
+            <div className="bg-slate-800 p-6 rounded w-full max-w-md border border-slate-700">
+              <h3 className="text-xl mb-4 font-semibold xl:text-2xl">Give Feedback</h3>
 
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
-          <div className="bg-slate-800 p-6 rounded w-full max-w-md border border-slate-700">
-            <h3 className="text-xl mb-4 font-semibold">Give Feedback</h3>
+              {/* <input
+                type="text"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                className="w-full mb-3 p-2 bg-slate-700 text-white rounded border border-slate-600 outline-none"
+              /> */}
 
-            {/* <input
-              type="text"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-              className="w-full mb-3 p-2 bg-slate-700 text-white rounded border border-slate-600 outline-none"
-            /> */}
+              <textarea
+                placeholder="Your Feedback"
+                value={formData.message}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
+                className="w-full mb-3 p-2 bg-slate-700 text-white rounded border border-slate-600 outline-none min-h-[120px]"
+              />
 
-            <textarea
-              placeholder="Your Feedback"
-              value={formData.message}
-              onChange={(e) =>
-                setFormData({ ...formData, message: e.target.value })
-              }
-              className="w-full mb-3 p-2 bg-slate-700 text-white rounded border border-slate-600 outline-none min-h-[120px]"
-            />
+              <p className="mb-2 text-sm text-gray-300 xl:text-2xl">Rate us:</p>
+              <StarRating
+                rating={formData.rating}
+                setRating={(value: number) =>
+                  setFormData({ ...formData, rating: value })
+                }
+              />
 
-            <p className="mb-2 text-sm text-gray-300">Rate us:</p>
-            <StarRating
-              rating={formData.rating}
-              setRating={(value: number) =>
-                setFormData({ ...formData, rating: value })
-              }
-            />
+              <div className="flex justify-end gap-3 mt-6">
+                <button
+                  onClick={closeModal}
+                  className="text-white px-4 py-2 rounded border border-slate-600 xl:text-2xl"
+                >
+                  Cancel
+                </button>
 
-            <div className="flex justify-end gap-3 mt-6">
-              <button
-                onClick={closeModal}
-                className="text-white px-4 py-2 rounded border border-slate-600"
-              >
-                Cancel
-              </button>
-
-              <button
-                onClick={handleSubmit}
-                className="bg-lime-400 text-slate-900 px-5 py-2 rounded font-medium"
-              >
-                Submit
-              </button>
+                <button
+                  onClick={handleSubmit}
+                  className="bg-lime-400 text-slate-900 px-5 py-2 rounded font-medium xl:text-2xl"
+                >
+                  Submit
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

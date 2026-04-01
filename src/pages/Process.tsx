@@ -76,9 +76,9 @@ export default function Process() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl mb-4">Design Process</h1>
-            <div className="w-24 h-1 bg-[#a3e635] mx-auto mb-6"></div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <h1 className="text-5xl md:text-6xl mb-4 xl:text-6xl">Design Process</h1>
+            <div className="w-24 h-1 xl:w-48 xl:h-2 bg-[#a3e635] mx-auto mb-6"></div>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto xl:text-2xl">
               Our systematic approach ensures your project moves smoothly from initial concept
               to final construction, with quality and precision at every stage.
             </p>
@@ -111,15 +111,15 @@ export default function Process() {
                   }`}>
                     <div className="bg-gray-50 p-6 rounded-lg shadow-lg border-t-4 border-[#a3e635]">
                       <div className="flex items-center gap-4 mb-4">
-                        <span className="text-5xl text-[#a3e635]/20">{step.number}</span>
-                        <h3 className="text-2xl">{step.title}</h3>
+                        <span className="text-5xl xl:text-6xl text-[#a3e635]/20">{step.number}</span>
+                        <h3 className="text-2xl xl:text-3xl">{step.title}</h3>
                       </div>
-                      <p className="text-gray-600 mb-4">{step.description}</p>
+                      <p className="text-gray-600 mb-4 xl:text-left xl:text-xl">{step.description}</p>
                       <ul className="space-y-2">
                         {step.details.map((detail, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
-                            <CheckCircle className="w-4 h-4 text-[#a3e635] mt-0.5 flex-shrink-0" />
-                            <span>{detail}</span>
+                            <CheckCircle className="w-4 h-4 xl:w-6 xl:h-6 text-[#a3e635] mt-0.5 flex-shrink-0" />
+                            <span className='xl:text-lg'>{detail}</span>
                           </li>
                         ))}
                       </ul>
@@ -151,8 +151,8 @@ export default function Process() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl text-white mb-4">Why Our Process Works</h2>
-            <div className="w-24 h-1 bg-[#a3e635] mx-auto"></div>
+            <h2 className="text-4xl xl:text-5xl text-white mb-4">Why Our Process Works</h2>
+            <div className="w-24 h-1 xl:w-48 xl:h-2 bg-[#a3e635] mx-auto"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -164,10 +164,10 @@ export default function Process() {
               className="bg-[#1e293b] p-8 rounded-lg text-center"
             >
               <div className="w-16 h-16 bg-[#a3e635] rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-[#0f172a]" />
+                <CheckCircle className="w-8 h-8 xl:w-10 xl:h-10 text-[#0f172a]" />
               </div>
-              <h3 className="text-xl text-white mb-3">Transparent Communication</h3>
-              <p className="text-gray-400">
+              <h3 className="text-xl xl:text-2xl text-white mb-3">Transparent Communication</h3>
+              <p className="text-gray-400 xl:text-xl">
                 Stay informed at every stage with regular updates and clear communication
                 throughout the entire process.
               </p>
@@ -181,10 +181,10 @@ export default function Process() {
               className="bg-[#1e293b] p-8 rounded-lg text-center"
             >
               <div className="w-16 h-16 bg-[#a3e635] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Lightbulb className="w-8 h-8 text-[#0f172a]" />
+                <Lightbulb className="w-8 h-8 xl:w-10 xl:h-10 text-[#0f172a]" />
               </div>
-              <h3 className="text-xl text-white mb-3">Quality Assurance</h3>
-              <p className="text-gray-400">
+              <h3 className="text-xl xl:text-2xl text-white mb-3">Quality Assurance</h3>
+              <p className="text-gray-400 xl:text-xl">
                 Rigorous quality control measures ensure your project meets the highest
                 standards of design and construction.
               </p>
@@ -198,10 +198,10 @@ export default function Process() {
               className="bg-[#1e293b] p-8 rounded-lg text-center"
             >
               <div className="w-16 h-16 bg-[#a3e635] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Hammer className="w-8 h-8 text-[#0f172a]" />
+                <Hammer className="w-8 h-8 xl:w-10 xl:h-10 text-[#0f172a]" />
               </div>
-              <h3 className="text-xl text-white mb-3">On-Time Delivery</h3>
-              <p className="text-gray-400">
+              <h3 className="text-xl xl:text-2xl text-white mb-3">On-Time Delivery</h3>
+              <p className="text-gray-400 xl:text-xl">
                 Structured workflow and efficient project management ensure timely completion
                 without compromising quality.
               </p>
@@ -218,15 +218,15 @@ export default function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl mb-6">Ready to Begin?</h2>
-            <div className="w-24 h-1 bg-[#a3e635] mx-auto mb-8"></div>
-            <p className="text-xl text-gray-300 mb-8">
+            <h2 className="text-4xl mb-6 xl:text-5xl">Ready to Begin?</h2>
+            <div className="w-24 h-1 xl:w-32 xl:h-2 bg-[#a3e635] mx-auto mb-8"></div>
+            <p className="text-xl text-gray-300 mb-8 xl:text-2xl">
               Let's start the journey of transforming your architectural vision into reality.
               Contact us today for an initial consultation.
             </p>
             <a
               href="/contact"
-              className="inline-block bg-[#a3e635] text-[#0f172a] px-8 py-4 rounded hover:bg-[#bef264] transition-all duration-300"
+              className="inline-block bg-[#a3e635] text-[#0f172a] px-8 py-4 rounded hover:bg-[#bef264] transition-all duration-300 xl:text-xl"
             >
               Get Started
             </a>

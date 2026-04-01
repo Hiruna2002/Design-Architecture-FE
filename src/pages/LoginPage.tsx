@@ -1,7 +1,3 @@
-// email - hiruna@gmail.com
-// password - hiruna2002
-
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { LogIn, Mail, Lock } from 'lucide-react';
@@ -69,10 +65,10 @@ export default function Login({ setIsLoggedIn }: LoginProps) {
         <div className="inline-flex items-center justify-center w-20 h-20 bg-[#86d91c] rounded-2xl shadow-xl mb-6">
           <LogIn className="w-9 h-9 text-[#0f172a]" />
         </div>
-        <h2 className="text-4xl font-extrabold text-white tracking-tight">
+        <h2 className="text-4xl xl:text-6xl font-extrabold text-white tracking-tight">
           Welcome Back
         </h2>
-        <p className="mt-2 text-gray-400 text-sm">
+        <p className="mt-2 text-gray-400 text-sm xl:text-2xl">
           Sign in to your account
         </p>
       </div>
@@ -84,7 +80,7 @@ export default function Login({ setIsLoggedIn }: LoginProps) {
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">
+            <label className="block text-sm font-semibold text-gray-300 mb-2 xl:text-2xl">
               Email Address
             </label>
             <div className="relative group">
@@ -102,7 +98,7 @@ export default function Login({ setIsLoggedIn }: LoginProps) {
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">
+            <label className="block text-sm font-semibold text-gray-300 mb-2 xl:text-2xl">
               Password
             </label>
             <div className="relative group">
@@ -128,7 +124,7 @@ export default function Login({ setIsLoggedIn }: LoginProps) {
           {/* Button */}
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-[#86d91c] text-[#0f172a] font-bold shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50"
+            className="w-full py-3 rounded-xl bg-[#86d91c] text-[#0f172a] font-bold shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 xl:text-2xl"
           >
             Login
           </button>
