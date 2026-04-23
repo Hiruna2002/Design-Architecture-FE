@@ -305,7 +305,7 @@ function Home() {
             <img
               src={logo}
               alt="Logo"
-              className="mt-16 w-[500px] sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain"
+              className="mt-10 w-[500px] sm:w-52 sm:h-52 md:mt-0 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain"
             />
 
             {/* Title */}
@@ -335,7 +335,7 @@ function Home() {
                 to="/contact"
                 className="mt-4 w-full sm:w-auto border-2 border-[#a3e635] text-[#a3e635] px-6 
                   py-3.5 rounded-lg text-base font-medium flex items-center justify-center 
-                  hover:bg-[#a3e635] hover:text-[#0f172a] transition-all"
+                  hover:bg-[#a3e635] hover:text-[#0f172a] transition-all md:mt-0"
               >
                 Get a Quote
               </Link>
