@@ -107,7 +107,7 @@ function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section
+      {/* <section
         className="relative h-screen flex items-center md:items-start justify-center bg-cover bg-center">
 
         <div className='absolute overflow-hidden w-full h-full'>
@@ -128,9 +128,6 @@ function Home() {
                 <img src={logo} alt='Logo' className=" w-80 h-80 xl:w-[500px] xl:h-[500px]" />
               </div>
             </div>
-            {/* <h1 className="text-5xl md:text-7xl mb-4 tracking-tight">
-              LS MASTER BUILDERS
-            </h1> */}
             <p className="text-xl md:text-2xl xl:text-5xl mb-3 text-[#a3e635]">
               Architectural Designer
             </p>
@@ -156,8 +153,202 @@ function Home() {
         </div>
 
         {/* Decorative geometric shapes */}
-        <div className="absolute top-20 left-10 w-20 h-20 border-4 border-[#a3e635]/30 rotate-45"></div>
+        {/* <div className="absolute top-20 left-10 w-20 h-20 border-4 border-[#a3e635]/30 rotate-45"></div>
         <div className="absolute bottom-40 right-20 w-16 h-16 border-4 border-[#a3e635]/20 rotate-12"></div>
+      </section>  */}
+
+      {/* <section className="relative min-h-screen overflow-hidden pt-20 md:pt-24 flex items-center justify-center bg-[#0f172a]">
+        {/* Background image */}
+        {/* <div className="absolute inset-0">
+          <img
+            src={image}
+            alt="Architectural background"
+            className="w-full h-full object-cover object-center"
+          />
+        </div> */}
+
+        {/* Dark overlay */}
+        {/* <div className="absolute inset-0 bg-[#03002e]/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f172a]/60"></div> */}
+
+        {/* Content */}
+        {/* <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center gap-4"
+          >
+            <img
+              src={logo}
+              alt="Logo"
+              className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain"
+            />
+
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-[#a3e635] font-medium">
+              Architectural Designer
+            </p>
+
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-4xl italic max-w-3xl">
+              "We design your vision into reality!"
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+              <Link
+                to="/projects"
+                className="bg-[#a3e635] text-[#0f172a] px-6 py-3 rounded-lg hover:bg-[#bef264] transition-all duration-300 inline-flex items-center justify-center group font-medium"
+              >
+                View Projects
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+              </Link>
+
+              <Link
+                to="/contact"
+                className="bg-transparent border-2 border-[#a3e635] text-[#a3e635] px-6 py-3 rounded-lg hover:bg-[#a3e635] hover:text-[#0f172a] transition-all duration-300 inline-flex items-center justify-center font-medium"
+              >
+                Get a Quote
+              </Link>
+            </div>
+          </motion.div>
+        </div> */}
+
+        {/* Decorative shapes */}
+        {/* <div className="absolute top-24 left-10 w-16 h-16 border-4 border-[#a3e635]/30 rotate-45"></div>
+        <div className="absolute bottom-24 right-10 w-14 h-14 border-4 border-[#a3e635]/20 rotate-12"></div>
+      </section>  */}
+
+      {/* <section className="relative min-h-[100svh] md:min-h-screen overflow-hidden pt-16 sm:pt-20 md:pt-24 flex items-center justify-center bg-[#0f172a]"> */}
+  {/* Background image */}
+  {/* <div className="absolute inset-0">
+    <img
+      src={image}
+      alt="Architectural background"
+      className="w-full h-full object-cover object-center"
+    />
+  </div> */}
+
+  {/* Dark overlay */}
+  {/* <div className="absolute inset-0 bg-[#03002e]/70"></div>
+  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f172a]/60"></div> */}
+
+  {/* Content */}
+  {/* <div className="relative z-20 w-full max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 text-center text-white">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="flex flex-col items-center gap-3 sm:gap-4"
+    >
+      <img
+        src={logo}
+        alt="Logo"
+        className="w-24 h-24 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain"
+      />
+
+      <p className="text-sm sm:text-2xl md:text-3xl lg:text-5xl text-[#a3e635] font-medium leading-tight">
+        Architectural Designer
+      </p>
+
+      <p className="text-sm sm:text-xl md:text-2xl lg:text-4xl italic max-w-[280px] sm:max-w-3xl leading-snug px-2">
+        "We design your vision into reality!"
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-3 sm:mt-4 w-full sm:w-auto px-4 sm:px-0">
+        <Link
+          to="/projects"
+          className="w-full sm:w-auto bg-[#a3e635] text-[#0f172a] px-6 py-3 rounded-lg hover:bg-[#bef264] transition-all duration-300 inline-flex items-center justify-center group font-medium text-sm sm:text-base"
+        >
+          View Projects
+          <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+        </Link>
+
+        <Link
+          to="/contact"
+          className="w-full sm:w-auto bg-transparent border-2 border-[#a3e635] text-[#a3e635] px-6 py-3 rounded-lg hover:bg-[#a3e635] hover:text-[#0f172a] transition-all duration-300 inline-flex items-center justify-center font-medium text-sm sm:text-base"
+        >
+          Get a Quote
+        </Link>
+      </div>
+    </motion.div>
+  </div> */}
+
+  {/* Decorative shapes */}
+  {/* <div className="hidden sm:block absolute top-24 left-10 w-16 h-16 border-4 border-[#a3e635]/30 rotate-45"></div>
+  <div className="hidden sm:block absolute bottom-24 right-10 w-14 h-14 border-4 border-[#a3e635]/20 rotate-12"></div>
+</section> */}
+
+      <section className="relative min-h-[100svh] md:min-h-screen overflow-hidden pt-16 sm:pt-20 md:pt-24 flex items-start md:items-center justify-center bg-[#0f172a]">
+        {/* Background */}
+        <div className="absolute inset-0">
+          <img
+            src={image}
+            alt="Architectural background"
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-[#03002e]/75"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#03002e]/40 to-[#0f172a]/90"></div>
+
+        {/* Content */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 text-white mt-6 md:mt-0">
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center md:items-center text-center md:text-center gap-4"
+          >
+
+            {/* Logo */}
+            <img
+              src={logo}
+              alt="Logo"
+              className="mt-16 w-[500px] sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain"
+            />
+
+            {/* Title */}
+            <p className="text-3xl sm:text-2xl md:text-3xl lg:text-5xl text-[#a3e635] font-semibold leading-tight">
+              Architectural Designer
+            </p>
+
+            {/* Subtitle */}
+            <p className="text-xl sm:text-lg md:text-2xl lg:text-4xl italic max-w-md sm:max-w-2xl md:max-w-3xl leading-relaxed">
+              "We design your vision into reality!"
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mt-12">
+
+              <Link
+                to="/projects"
+                className="w-full sm:w-auto bg-[#a3e635] text-[#0f172a] px-6 py-3.5 
+                  rounded-lg text-base font-medium flex items-center justify-center gap-2 
+                  hover:bg-[#bef264] transition-all"
+              >
+                View Projects
+                <ArrowRight size={18} />
+              </Link>
+
+              <Link
+                to="/contact"
+                className="mt-4 w-full sm:w-auto border-2 border-[#a3e635] text-[#a3e635] px-6 
+                  py-3.5 rounded-lg text-base font-medium flex items-center justify-center 
+                  hover:bg-[#a3e635] hover:text-[#0f172a] transition-all"
+              >
+                Get a Quote
+              </Link>
+
+            </div>
+
+          </motion.div>
+        </div>
+
+        {/* Decorative shapes (ONLY desktop) */}
+        <div className="hidden md:block absolute top-24 left-10 w-16 h-16 border-4 border-[#a3e635]/30 rotate-45"></div>
+        <div className="hidden md:block absolute bottom-24 right-10 w-14 h-14 border-4 border-[#a3e635]/20 rotate-12"></div>
+
       </section>
 
       {/* Highlights Section */}
