@@ -5,6 +5,7 @@ import axios from "axios";
 import StarRating from "../components/user/StarRating";
 import Swal from 'sweetalert2';
 import { motion } from "motion/react";
+import { Trash2 } from "lucide-react";
 
 interface Feedback {
   _id: string;
@@ -147,6 +148,20 @@ const FeedbackPage = () => {
       }
     }
 
+    const handleRemove = (index: number) => {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Are you sure?',
+        text: 'This will permanently delete the feedback!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const updated = [...feedbacks];
+          updated.splice(index, 1);
+          setFeedbacks(updated);
+        }
+      });
+    };
+
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-white py-20">
@@ -188,8 +203,18 @@ const FeedbackPage = () => {
                 feedbacks.map((f) => (
                   <div
                     key={f._id}
-                    className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#a3e635] xl:text-2xl"
+                    className="relative bg-white p-6 rounded-lg shadow-md border-t-4 border-[#a3e635] xl:text-2xl"
                   >
+                    {/* ✅ Dustbin Icon */}
+                    {currentUser?.role === "admin" && (
+                      <button
+                        onClick={() => handleRemove(feedbacks.indexOf(f))}
+                        className="absolute top-2 right-2 p-1 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-100 transition"
+                      >
+                        <Trash2 className="w-5 h-5 xl:w-7 xl:h-7" />
+                      </button>
+                    )}
+
                     <div className="flex items-center justify-between gap-4 xl:gap-8">
                       <div>
                         <p className="font-semibold text-black xl:text-2xl">
@@ -208,15 +233,13 @@ const FeedbackPage = () => {
                       </div>
                     </div>
 
-                    <p className="mt-3 text-gray-600 mb-4 italic xl:text-2xl">"{f.message}"</p>
+                    <p className="mt-3 text-gray-600 mb-4 italic xl:text-2xl">
+                      "{f.message}"
+                    </p>
                   </div>
                 ))
               )}
-          
         </div>
-
-        
-
         {isModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
             <div className="bg-slate-800 p-6 rounded w-full max-w-md border border-slate-700">

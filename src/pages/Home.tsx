@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import logo from '../assets/111.png';
 import image from '../assets/bg.jpg';
 
+
 interface Project {
   _id: string;
   name: string;
@@ -106,177 +107,6 @@ function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      {/* <section
-        className="relative h-screen flex items-center md:items-start justify-center bg-cover bg-center">
-
-        <div className='absolute overflow-hidden w-full h-full'>
-          <img src={image} className='w-full -z-10' alt="" />
-        </div>
-
-        <div className='bg-[#03002e80] w-full h-full z-10 absolute'></div>
-
-        <div className="absolute z-20 inset-0 bg-gradient-to-b from-transparent to-[#0f172a]/50"></div>
-        <div className="relative z-30 text-center text-white px-4 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-block mb-6">
-              <div className="flex items-center justify-center mx-auto xl:mt-8">
-                <img src={logo} alt='Logo' className=" w-80 h-80 xl:w-[500px] xl:h-[500px]" />
-              </div>
-            </div>
-            <p className="text-xl md:text-2xl xl:text-5xl mb-3 text-[#a3e635]">
-              Architectural Designer
-            </p>
-            <p className="text-2xl md:text-3xl xl:text-6xl mb-8 italic">
-              "We design your vision into reality!"
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center xl:w-[500px] mx-auto">
-              <Link
-                to="/projects"
-                className="bg-[#a3e635] text-[#0f172a] px-8 py-4 rounded hover:bg-[#bef264] transition-all duration-300 inline-flex items-center justify-center group xl:text-2xl"
-              >
-                View Projects
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-              </Link>
-              <Link
-                to="/contact"
-                className="bg-transparent border-2 border-[#a3e635] text-[#a3e635] px-8 py-4 rounded hover:bg-[#a3e635] hover:text-[#0f172a] transition-all duration-300 inline-flex items-center justify-center xl:text-2xl"
-              >
-                Get a Quote
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Decorative geometric shapes */}
-        {/* <div className="absolute top-20 left-10 w-20 h-20 border-4 border-[#a3e635]/30 rotate-45"></div>
-        <div className="absolute bottom-40 right-20 w-16 h-16 border-4 border-[#a3e635]/20 rotate-12"></div>
-      </section>  */}
-
-      {/* <section className="relative min-h-screen overflow-hidden pt-20 md:pt-24 flex items-center justify-center bg-[#0f172a]">
-        {/* Background image */}
-        {/* <div className="absolute inset-0">
-          <img
-            src={image}
-            alt="Architectural background"
-            className="w-full h-full object-cover object-center"
-          />
-        </div> */}
-
-        {/* Dark overlay */}
-        {/* <div className="absolute inset-0 bg-[#03002e]/70"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f172a]/60"></div> */}
-
-        {/* Content */}
-        {/* <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col items-center gap-4"
-          >
-            <img
-              src={logo}
-              alt="Logo"
-              className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain"
-            />
-
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-[#a3e635] font-medium">
-              Architectural Designer
-            </p>
-
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-4xl italic max-w-3xl">
-              "We design your vision into reality!"
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
-              <Link
-                to="/projects"
-                className="bg-[#a3e635] text-[#0f172a] px-6 py-3 rounded-lg hover:bg-[#bef264] transition-all duration-300 inline-flex items-center justify-center group font-medium"
-              >
-                View Projects
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-              </Link>
-
-              <Link
-                to="/contact"
-                className="bg-transparent border-2 border-[#a3e635] text-[#a3e635] px-6 py-3 rounded-lg hover:bg-[#a3e635] hover:text-[#0f172a] transition-all duration-300 inline-flex items-center justify-center font-medium"
-              >
-                Get a Quote
-              </Link>
-            </div>
-          </motion.div>
-        </div> */}
-
-        {/* Decorative shapes */}
-        {/* <div className="absolute top-24 left-10 w-16 h-16 border-4 border-[#a3e635]/30 rotate-45"></div>
-        <div className="absolute bottom-24 right-10 w-14 h-14 border-4 border-[#a3e635]/20 rotate-12"></div>
-      </section>  */}
-
-      {/* <section className="relative min-h-[100svh] md:min-h-screen overflow-hidden pt-16 sm:pt-20 md:pt-24 flex items-center justify-center bg-[#0f172a]"> */}
-  {/* Background image */}
-  {/* <div className="absolute inset-0">
-    <img
-      src={image}
-      alt="Architectural background"
-      className="w-full h-full object-cover object-center"
-    />
-  </div> */}
-
-  {/* Dark overlay */}
-  {/* <div className="absolute inset-0 bg-[#03002e]/70"></div>
-  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f172a]/60"></div> */}
-
-  {/* Content */}
-  {/* <div className="relative z-20 w-full max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 text-center text-white">
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="flex flex-col items-center gap-3 sm:gap-4"
-    >
-      <img
-        src={logo}
-        alt="Logo"
-        className="w-24 h-24 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain"
-      />
-
-      <p className="text-sm sm:text-2xl md:text-3xl lg:text-5xl text-[#a3e635] font-medium leading-tight">
-        Architectural Designer
-      </p>
-
-      <p className="text-sm sm:text-xl md:text-2xl lg:text-4xl italic max-w-[280px] sm:max-w-3xl leading-snug px-2">
-        "We design your vision into reality!"
-      </p>
-
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-3 sm:mt-4 w-full sm:w-auto px-4 sm:px-0">
-        <Link
-          to="/projects"
-          className="w-full sm:w-auto bg-[#a3e635] text-[#0f172a] px-6 py-3 rounded-lg hover:bg-[#bef264] transition-all duration-300 inline-flex items-center justify-center group font-medium text-sm sm:text-base"
-        >
-          View Projects
-          <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-        </Link>
-
-        <Link
-          to="/contact"
-          className="w-full sm:w-auto bg-transparent border-2 border-[#a3e635] text-[#a3e635] px-6 py-3 rounded-lg hover:bg-[#a3e635] hover:text-[#0f172a] transition-all duration-300 inline-flex items-center justify-center font-medium text-sm sm:text-base"
-        >
-          Get a Quote
-        </Link>
-      </div>
-    </motion.div>
-  </div> */}
-
-  {/* Decorative shapes */}
-  {/* <div className="hidden sm:block absolute top-24 left-10 w-16 h-16 border-4 border-[#a3e635]/30 rotate-45"></div>
-  <div className="hidden sm:block absolute bottom-24 right-10 w-14 h-14 border-4 border-[#a3e635]/20 rotate-12"></div>
-</section> */}
-
       <section className="relative min-h-[100svh] md:min-h-screen overflow-hidden pt-16 sm:pt-20 md:pt-24 flex items-start md:items-center justify-center bg-[#0f172a]">
         {/* Background */}
         <div className="absolute inset-0">
@@ -496,13 +326,33 @@ function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:h-[300px]">
             {feedbacks.slice(0, 3).map((f, index) => (
+              // <motion.div
+              //   key={index}
+              //   initial={{ opacity: 0, y: 20 }}
+              //   whileInView={{ opacity: 1, y: 0 }}
+              //   viewport={{ once: true }}
+              //   transition={{ delay: index * 0.1 }}
+              //   className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#a3e635]"
+              // >
+              //   <div className="flex mb-4">
+              //     {[...Array(f.rating)].map((_, i) => (
+              //       <Star
+              //         key={i}
+              //         className="w-5 h-5 xl:w-10 xl:h-10 text-[#a3e635] fill-[#a3e635]"
+              //       />
+              //     ))}
+              //   </div>
+
+              //   <p className="text-gray-600 mb-4 italic xl:text-2xl">"{f.message}"</p>
+              //   <p className="text-[#0f172a] xl:text-3xl">- {f.name}</p>
+              // </motion.div>
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#a3e635]"
+                className="relative bg-white p-6 rounded-lg shadow-md border-t-4 border-[#a3e635]"
               >
                 <div className="flex mb-4">
                   {[...Array(f.rating)].map((_, i) => (
@@ -513,8 +363,12 @@ function Home() {
                   ))}
                 </div>
 
-                <p className="text-gray-600 mb-4 italic xl:text-2xl">"{f.message}"</p>
-                <p className="text-[#0f172a] xl:text-3xl">- {f.name}</p>
+                <p className="text-gray-600 mb-4 italic xl:text-2xl">
+                  "{f.message}"
+                </p>
+                <p className="text-[#0f172a] xl:text-3xl">
+                  - {f.name}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -525,258 +379,3 @@ function Home() {
 }
 
 export default Home
-
-
-// import { Link } from 'react-router-dom';
-// import { ArrowRight, Building2, Ruler, Hammer, Star } from 'lucide-react';
-// import { motion } from 'motion/react';
-// import { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import { useNavigate } from "react-router-dom";
-// import logo from '../assets/111.png';
-// import image from '../assets/bg.jpg';
-
-// interface Project {
-//   _id: string;
-//   name: string;
-//   imageUrl: string;
-// }
-
-// interface Service {
-//   _id: string;
-//   name: string;
-//   desc: string;
-//   exp: number;
-//   benifits: string[];
-// }
-
-// interface Feedback {
-//   _id: string;
-//   name: string;
-//   message: string;
-//   rating: number;
-//   createdAt?: string;
-// }
-
-// function Home() {
-//   const [projects, setProjects] = useState<Project[]>([]);
-//   const [services, setServices] = useState<Service[]>([]);
-//   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
-
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     getAllProjects();
-//     getAllServices();
-//     fetchFeedbacks();
-//     checkAuth();
-//   }, []);
-
-//   const getAllServices = async () => {
-//     try {
-//       const res = await axios.get('https://design-architecture-be.vercel.app/api/services')
-//       setServices(res.data);
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-
-//   const getAllProjects = async () => {
-//     try {
-//       const res = await axios.get('https://design-architecture-be.vercel.app/api/projects')
-//       setProjects(res.data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
-
-//   const fetchFeedbacks = async () => {
-//     try {
-//       const res = await axios.get<Feedback[]>(
-//         "https://design-architecture-be.vercel.app/api/feedback"
-//       );
-//       setFeedbacks(res.data);
-//     } catch (err) {
-//       console.error("Error fetching feedbacks:", err);
-//     }
-//   };
-
-//   const handleServices = (id: string) => {
-//     navigate(`/services/${id}`)
-//   }
-
-//   const handleProject = (id: string) => {
-//     navigate(`/projects/${id}`)
-//   }
-
-//   const checkAuth = async () => {
-//     try {
-//       const token = localStorage.getItem("token");
-
-//       await axios.get(
-//         "https://design-architecture-be.vercel.app/api/users/profile",
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         }
-//       );
-
-//       return true;
-//     } catch (err) {
-//       return false;
-//     }
-//   }
-
-//   return (
-//     <div className="min-h-screen">
-
-//       {/* Hero Section */}
-//       <section className="relative h-screen flex items-center justify-center bg-cover bg-center">
-
-//         <div className='absolute overflow-hidden w-full h-full'>
-//           <img src={image} className='w-full h-full object-cover -z-10' alt="" />
-//         </div>
-
-//         <div className='bg-[#03002e80] w-full h-full z-10 absolute'></div>
-//         <div className="absolute z-20 inset-0 bg-gradient-to-b from-transparent to-[#0f172a]/50"></div>
-
-//         {/* ONLY xl & 2xl updated */}
-//         <div className="relative z-30 text-center text-white px-4 max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
-//           <motion.div
-//             initial={{ opacity: 0, y: 30 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.8 }}
-//           >
-//             <div className="inline-block mb-6">
-//               <div className="flex items-center justify-center mx-auto">
-//                 <img src={logo} alt='Logo'
-//                   className="w-40 xl:w-80 2xl:w-[30rem] h-auto" />
-//               </div>
-//             </div>
-
-//             <p className="text-lg xl:text-3xl 2xl:text-4xl mb-3 text-[#a3e635]">
-//               Architectural Designer
-//             </p>
-
-//             <p className="text-xl xl:text-3xl 2xl:text-5xl mb-8 italic">
-//               "We design your vision into reality!"
-//             </p>
-
-//             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-//               <Link
-//                 to="/projects"
-//                 className="bg-[#a3e635] text-[#0f172a] px-6 py-3 xl:px-10 xl:py-5 2xl:px-12 2xl:py-6 rounded hover:bg-[#bef264]"
-//               >
-//                 View Projects
-//                 <ArrowRight className="ml-2 inline" size={20} />
-//               </Link>
-
-//               <Link
-//                 to="/contact"
-//                 className="border-2 border-[#a3e635] text-[#a3e635] px-6 py-3 xl:px-10 xl:py-5 2xl:px-12 2xl:py-6 rounded hover:bg-[#a3e635] hover:text-[#0f172a]"
-//               >
-//                 Get a Quote
-//               </Link>
-//             </div>
-//           </motion.div>
-//         </div>
-//       </section>
-
-//       {/* Highlights */}
-//       <section className="bg-white py-16 xl:py-24 2xl:py-32">
-//         <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4">
-
-//           <div className="grid grid-cols-1 md:grid-cols-3 xl:gap-12 2xl:gap-16 gap-8">
-
-//             {[Building2, Ruler, Hammer].map((Icon, i) => (
-//               <div key={i} className="text-center p-6 bg-gray-50 rounded-lg">
-//                 <Icon className="w-10 h-10 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 mx-auto mb-4 text-[#0f172a]" />
-//                 <h3 className="text-lg xl:text-2xl 2xl:text-3xl mb-2">
-//                   {["Modern Architectural Excellence", "Innovative Structural Solutions", "Professional Construction Planning"][i]}
-//                 </h3>
-//                 <p className="text-gray-600 xl:text-lg 2xl:text-xl">
-//                   {["Contemporary designs that blend aesthetics with functionality", "Engineering precision in every project we undertake", "Seamless execution from concept to completion"][i]}
-//                 </p>
-//               </div>
-//             ))}
-
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Services */}
-//       <section className="bg-[#0f172a] py-16 xl:py-24 2xl:py-32">
-//         <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4">
-
-//           <h2 className="text-3xl xl:text-5xl 2xl:text-6xl text-white text-center mb-12">
-//             Our Services
-//           </h2>
-
-//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
-//             {services.map((service) => (
-//               <div
-//                 key={service._id}
-//                 onClick={() => handleServices(service._id)}
-//                 className="bg-[#1e293b] p-6 xl:p-8 2xl:p-10 rounded-lg cursor-pointer border hover:border-[#a3e635]"
-//               >
-//                 <h3 className="text-white xl:text-xl 2xl:text-2xl mb-2">{service.name}</h3>
-//                 <p className="text-gray-400 xl:text-lg">{service.desc}</p>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Projects */}
-//       <section className="bg-white py-16 xl:py-24 2xl:py-32">
-//         <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4">
-
-//           <h2 className="text-3xl xl:text-5xl 2xl:text-6xl text-center mb-12">
-//             Featured Projects
-//           </h2>
-
-//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-//             {projects.slice(0, 4).map((project) => (
-//               <div key={project._id} className="cursor-pointer" onClick={() => handleProject(project._id)}>
-//                 <img
-//                   src={project.imageUrl}
-//                   className="w-full h-60 xl:h-80 2xl:h-96 object-cover rounded"
-//                 />
-//                 <h3 className="mt-2 xl:text-xl 2xl:text-2xl">{project.name}</h3>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Testimonials */}
-//       <section className="bg-gray-50 py-16 xl:py-24 2xl:py-32">
-//         <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4">
-
-//           <h2 className="text-3xl xl:text-5xl 2xl:text-6xl text-center mb-12">
-//             Client Testimonials
-//           </h2>
-
-//           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
-//             {feedbacks.slice(0, 4).map((f, index) => (
-//               <div key={index} className="bg-white p-6 xl:p-8 2xl:p-10 rounded-lg shadow-md">
-//                 <div className="flex mb-4">
-//                   {[...Array(f.rating)].map((_, i) => (
-//                     <Star key={i} className="w-5 h-5 text-[#a3e635] fill-[#a3e635]" />
-//                   ))}
-//                 </div>
-//                 <p className="text-gray-600 xl:text-lg 2xl:text-xl mb-4 italic">"{f.message}"</p>
-//                 <p className="text-[#0f172a] xl:text-lg 2xl:text-xl">- {f.name}</p>
-//               </div>
-//             ))}
-//           </div>
-
-//         </div>
-//       </section>
-
-//     </div>
-//   );
-// }
-
-// export default Home;

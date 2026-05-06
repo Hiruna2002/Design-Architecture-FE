@@ -9,13 +9,15 @@ interface User {
   name: string;
   email: string;
   role: string;
+  phone: string;
+  password: string;
 }
 
 const AdminUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [formData, setFormData] = useState({ name: '', email: '', role: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', role: '', phone: '', password: '' });
 
   useEffect(() => {
     fetchUsers();
@@ -32,6 +34,7 @@ const AdminUsers = () => {
 
   const handleAddOrUpdate = async () => {
     try {
+      console.log("Clicked");
       if (currentUser) {
         await axios.put(`https://design-architecture-be.vercel.app/api/users/${currentUser._id}`, formData);
       } else {
@@ -57,7 +60,7 @@ const AdminUsers = () => {
 
   const openModal = (user?: User) => {
     setCurrentUser(user || null);
-    setFormData(user ? { name: user.name, email: user.email, role: user.role } : { name: '', email: '', role: '' });
+    setFormData(user ? { name: user.name, email: user.email, role: user.role, phone: user.phone, password: user.password } : { name: '', email: '', role: '', phone: '', password: '' });
     setIsModalOpen(true);
   };
 
@@ -144,6 +147,20 @@ const AdminUsers = () => {
               placeholder="Role"
               value={formData.role}
               onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+              className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white"
+            />
+            <input
+              type="text"
+              placeholder="Contact Number"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white"
+            />
+            <input
+              type="text"
+              placeholder="Password"
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               className="w-full mb-4 p-2 bg-slate-700 border border-slate-600 rounded text-white"
             />
             <div className="flex justify-end">

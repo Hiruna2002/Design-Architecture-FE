@@ -1,7 +1,3 @@
-// Create a new file: src/components/Admin/AdminLayout.tsx
-// This provides the sidebar navigation and main content area for the admin dashboard.
-// It's fully responsive: sidebar collapses to a menu on mobile.
-
 import { Link, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 
