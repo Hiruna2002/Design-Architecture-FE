@@ -16,11 +16,8 @@ export default function Login({ setIsLoggedIn }: LoginProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("CLICKED");
 
     try {
-      console.log("input email is: ", email);
-      console.log("input password is: ", password);
       const res = await axios.post("https://design-architecture-be.vercel.app/api/users/login", {
         email, password
       });
