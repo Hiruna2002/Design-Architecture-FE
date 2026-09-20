@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Custom cursor - desktop mouse devices only */
+@media (pointer: fine) {
+  html,
+  body,
+  body *,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label,
+  [role="button"],
+  [data-cursor="pointer"] {
+    cursor: none !important;
+  }
+}

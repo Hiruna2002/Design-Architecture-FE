@@ -1,0 +1,1 @@
+import type { MetadataRoute } from 'next'; export default function sitemap():MetadataRoute.Sitemap{const b=process.env.NEXT_PUBLIC_SITE_URL||'https://design-architecture.vercel.app';return ['','/about','/services','/projects','/process','/contact','/team','/feedback'].map((p)=>({url:b+p,lastModified:new Date(),changeFrequency:p===''?'weekly':'monthly',priority:p===''?1:0.8}))}
